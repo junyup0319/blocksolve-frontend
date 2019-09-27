@@ -5,6 +5,11 @@ import { Vue, Component } from 'vue-property-decorator';
 
 @Component({})
 export default class ProblemList extends Vue {
+  private clickItem(id: string) {
+    this.$router.push({
+      path: `/ide/${id}`,
+    });
+  }
   private mounted() {
     //
   }

@@ -38,7 +38,8 @@
         cursor: pointer;
         font-weight: 500;
         .start-item {
-          text-decoration: underline;
+          color: $main-color;
+          text-decoration: underline $main-color;
         }
       }
     }

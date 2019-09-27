@@ -23,7 +23,7 @@
           <div class="options-1">정답 비율</div>
           <div class="end-item">상태</div>
         </div>
-        <div class="table-item items">
+        <div class="table-item items" @click="clickItem('1')">
           <div class="start-item">제목입니다</div>
           <div class="options-1">카테고리</div>
           <div class="options-1">만든사람입니다</div>
@@ -31,7 +31,7 @@
           <div class="options-1">정답비율 입니다</div>
           <div class="end-item">내용입니다</div>
         </div>
-        <div class="table-item items">
+        <div class="table-item items" @click="clickItem('2')">
           <div class="start-item">제목입니다</div>
           <div class="options-1">카테고리</div>
           <div class="options-1">만든사람입니다</div>
@@ -39,7 +39,8 @@
           <div class="options-1">정답비율 입니다</div>
           <div class="end-item">내용입니다</div>
         </div>
-        <div class="table-item items" style="border-bottom: solid 2px #999;">
+        <div class="table-item items" style="border-bottom: solid 2px #999;"
+          @click="clickItem('3')">
           <div class="start-item">제목입니다</div>
           <div class="options-1">카테고리</div>
           <div class="options-1">만든사람입니다</div>
