@@ -25,7 +25,7 @@ export default class Ide extends Vue {
 
   private workspace = new Blockly.Workspace();
   private toolboxXML =
-    `<xml id="toolbox" style="display: none">
+    `<xml id="toolbox" style="display: none;">
       <category name="Logic" colour="210">
         <block type="controls_if"></block>
         <block type="logic_compare"></block>
@@ -84,6 +84,8 @@ export default class Ide extends Vue {
       },
       trashcan: true,
     });
+    this.workspace.toolbox_.HtmlDiv.style.background = 'rgba(156, 213, 159, 1)';
+    this.workspace.toolbox_.HtmlDiv.style.color = '#fff';
 
     window.addEventListener('resize', this.onResize, false);
     this.$nextTick(() => {
