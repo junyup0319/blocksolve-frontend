@@ -5,6 +5,9 @@ import { Vue, Component } from 'vue-property-decorator';
 
 @Component({})
 export default class Ide extends Vue {
+  private ui = {
+    showTabItem: false,
+  };
   private mounted() {
     //
   }

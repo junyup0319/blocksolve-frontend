@@ -1,17 +1,19 @@
 <template>
-  <v-app style="background: white;">
+  <v-app>
     <div class="nav-wrapper">
       <div class="nav content-zone">
         <div class="nav-title" @click="$router.push('/')">BlockSolve</div>
         <v-tabs color="#00b248" right>
-          <v-tab v-for="item in tabItems" :key="item.name" @click="$router.push(item.to)">{{item.name}}</v-tab>
+          <v-tab @click="$router.push('/problemlist')">문제 리스트</v-tab>
+          <v-tab>카테고리<v-icon>arrow_drop_down</v-icon></v-tab>
+          <v-tab @click="$router.push('/myPage')">마이페이지</v-tab>
         </v-tabs>
-        <v-btn small fab dark color="#00b248" style="margin: 0 0 12px 0;">
-          <v-icon>person</v-icon>
+        <v-btn small fab dark color="#00b248" style="margin: 0 0 12px 0; width: 32px; height: 32px;">
+          <v-icon small>person</v-icon>
         </v-btn>
       </div>
     </div>
-    
+
     <!-- <v-app-bar app color="#2bbd7e" dark>
       <v-app-bar-nav-icon color="#eee" @click="ui.showNav = !ui.showNav"></v-app-bar-nav-icon>
       
@@ -44,7 +46,7 @@
       </v-list>
 
     </v-navigation-drawer> -->
-    <v-content class="content-zone">
+    <v-content>
       <router-view></router-view>
     </v-content>
 

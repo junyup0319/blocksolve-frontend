@@ -1,10 +1,18 @@
-$main-color: #00e676;
-$main-color-light: #66ffa6;
-$main-color-dark: #00b248;
+$main-color: #2bbd7e;
+$main-color-light: #69f0ae;
+$main-color-dark: #008c51;
 
 .content-zone {
   width: 1024px !important;
   margin: auto;
   // border: solid 1px;
+}
+.content-zone-padding {
+  padding: 20px 0;
+}
+.content-zone-scroll {
+  width: 100%;
+  height: calc(100vh - 80px);
+  overflow: auto;
 }
 

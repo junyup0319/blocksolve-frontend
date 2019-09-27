@@ -1,3 +1,67 @@
 // file created at 2019-9-24
 // Auto-generated files problem-list.scss
+.problemlist-content-area {
+  .problemlist-despriptor {
+    font-weight: normal;
+    font-size: 16px;
+    color: #797979;
+    display: flex;
+  }  
+}
 
+.table-area {
+  width: 100%;
+  margin-top: 12px;
+  color: #444;
+  background: #fff;
+  .table-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    &.header {
+      height: 44px;
+      background: #fefefe;
+      font-size: 14px;
+      border-top: solid 2px #999;
+      border-bottom: solid 2px #999;
+      font-weight: bold;
+      color: #444 !important;
+    }
+    &.items {
+      padding: 10px 0;
+      font-size: 12px;
+      border-bottom: solid 1px #ddd;
+      .start-item {
+        font-weight: 500;
+      }
+      &:hover {
+        cursor: pointer;
+        font-weight: 500;
+        .start-item {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .start-item {
+      width: 200px;
+      min-width: 200px;
+      max-width: 200px;
+      padding-left: 50px;
+
+    }
+    .options-1 {
+      flex: 1;
+    }
+    .options-2 {
+      flex: 2;
+    }
+    .end-item {
+      width: 120px;
+      min-width: 120px;
+      max-width: 120px;
+      padding-right: 50px;
+    }
+  }
+  
+}
