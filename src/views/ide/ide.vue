@@ -9,7 +9,7 @@
           <v-tab style="border-bottom: solid 1px rgba(0, 178, 72, 0.4);"><v-icon>description</v-icon></v-tab>
           <v-tab style="border-bottom: solid 1px rgba(0, 178, 72, 0.4);"><v-icon>bug_report</v-icon></v-tab>
           <v-btn class="tab-button" icon width="100%" style="border-radius: 0px;" color="#00b248"
-            @click="ui.showTabItem = !ui.showTabItem"><v-icon class="icon" :showTabItem="ui.showTabItem">keyboard_arrow_left</v-icon>
+            @click="toggleTabClick"><v-icon class="icon" :showTabItem="ui.showTabItem">keyboard_arrow_right</v-icon>
           </v-btn>
           <v-tab-item class="tab-item">
             <div style="font-size: 24px; color: #00b248; font-weight: 600; text-align: center; margin: 12px 0;">문제</div>
@@ -24,7 +24,9 @@
         </v-tabs>
         
       </div>
-      <div class="blockly-area"></div>
+      <div class="blockly-area" ref="blocklyArea">
+        <div id="blocklyDiv" ref="blocklyDiv"></div>
+      </div>
     </div>
   </div>
 </template>
