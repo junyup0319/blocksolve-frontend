@@ -11,7 +11,7 @@ export default class App extends Vue {
 
   @Watch('$route')
   private onChangeRoute() {
-    this.ui.showNav = false;
+    //
   }
 
 }
