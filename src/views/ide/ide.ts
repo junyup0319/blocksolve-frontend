@@ -2,12 +2,11 @@
 // Auto-generated files ide.ts
 
 import { Vue, Component } from 'vue-property-decorator';
-
+import { Problem } from '@/lib/form';
 // @ts-ignore
 import Blockly from 'node-blockly/browser';
 // @ts-ignore
 import Korean from 'node-blockly/lib/i18n/ko.js';
-
 
 import 'node-blockly/lib/blockly_compressed_browser.js';
 import 'node-blockly/lib/javascript_compressed';
@@ -48,6 +47,38 @@ export default class Ide extends Vue {
       <category name="Variables" colour="330" custom="VARIABLE"></category>
       <category name="Functions" colour="290" custom="PROCEDURE"></category>
     </xml>`;
+  private problem: Problem = {
+    pid: '',
+    title: '',
+    category: '',
+    creator: '',
+    submitCount: 0,
+    correctRate: 0 + '%',
+    submitStatus: 'correct',
+    contents: '',
+    inputDetails: '',
+    outputDetails: '',
+    exInput: [
+      {
+          inputId: '',
+          value: [],
+      },
+      {
+          inputId: '',
+          value : [],
+      },
+    ],
+    exOutput: [
+      {
+        outputId: '',
+        value: [],
+      },
+      {
+        outputId: '',
+        value : [],
+      },
+    ],
+  };
 
   private onResize() {
     this.$refs.blocklyDiv.style.left = 0 + 'px';
@@ -64,7 +95,8 @@ export default class Ide extends Vue {
       Blockly.svgResize(this.workspace);
     }, 200);
   }
-  private mounted() {
+
+  private initBlockly() {
     Blockly.setLocale(Korean);
     this.workspace = Blockly.inject('blocklyDiv', {
       toolbox: this.toolboxXML,
@@ -92,5 +124,42 @@ export default class Ide extends Vue {
       this.onResize();
       Blockly.svgResize(this.workspace);
     });
+  }
+
+  private mounted() {
+    this.initBlockly();
+    // test code
+    this.problem = {
+      pid: this.$route.params.pid,
+      title: 'A+B',
+      category: 'basic',
+      creator: 'Joylish',
+      submitCount: Math.floor(Math.random() * 100),
+      correctRate: (Math.random() * 100).toFixed(2) + '%',
+      submitStatus: 'correct',
+      contents: '두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.',
+      inputDetails: '첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)',
+      outputDetails: '첫째 줄에 A-B를 출력한다.',
+      exInput: [
+        {
+            inputId: '1',
+            value: [2, 3],
+        },
+        {
+            inputId: '2',
+            value : [4, 3],
+        },
+      ],
+      exOutput: [
+        {
+          outputId: '1',
+          value: [2, 3],
+        },
+        {
+          outputId: '2',
+          value : [4, 3],
+        },
+      ],
+    };
   }
 }

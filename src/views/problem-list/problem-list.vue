@@ -21,32 +21,17 @@
           <div class="options-1">만든이</div>
           <div class="options-1">제출</div>
           <div class="options-1">정답 비율</div>
-          <div class="end-item">상태</div>
+          <div class="end-item">설명</div>
         </div>
-        <div class="table-item items" @click="clickItem('1')">
-          <div class="start-item">제목입니다</div>
-          <div class="options-1">카테고리</div>
-          <div class="options-1">만든사람입니다</div>
-          <div class="options-1">제출숫자입니다</div>
-          <div class="options-1">정답비율 입니다</div>
-          <div class="end-item">내용입니다</div>
-        </div>
-        <div class="table-item items" @click="clickItem('2')">
-          <div class="start-item">제목입니다</div>
-          <div class="options-1">카테고리</div>
-          <div class="options-1">만든사람입니다</div>
-          <div class="options-1">제출숫자입니다</div>
-          <div class="options-1">정답비율 입니다</div>
-          <div class="end-item">내용입니다</div>
-        </div>
-        <div class="table-item items" style="border-bottom: solid 2px #999;"
-          @click="clickItem('3')">
-          <div class="start-item">제목입니다</div>
-          <div class="options-1">카테고리</div>
-          <div class="options-1">만든사람입니다</div>
-          <div class="options-1">제출숫자입니다</div>
-          <div class="options-1">정답비율 입니다</div>
-          <div class="end-item">내용입니다</div>
+        <div class="table-item items"
+            v-for="(problem, i) in problems" :key="'problem' + i"
+            @click="clickItem(problem.pid)">
+          <div class="start-item">{{problem.title}}</div>
+          <div class="options-1" style="padding-left: 4px;">{{problem.category}}</div>
+          <div class="options-1" style="padding-left: 4px;">{{problem.creator}}</div>
+          <div class="options-1" style="padding-left: 4px;">{{problem.submitCount}}</div>
+          <div class="options-1" style="padding-left: 4px;">{{problem.correctRate}}</div>
+          <div class="end-item"  style="padding-left: 4px;">{{problem.contents}}</div>
         </div>
       </div>
     </div>
