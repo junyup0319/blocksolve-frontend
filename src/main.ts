@@ -5,6 +5,7 @@ import store from './store';
 import './registerServiceWorker';
 import vuetify from './plugins/vuetify';
 
+import 'ant-design-vue/dist/antd.css';
 import {
   Button,
   Checkbox,

@@ -11,13 +11,17 @@
           <v-btn class="tab-button" icon width="100%" style="margin-top: 20px; border-radius: 0px;" color="#00b248"
             @click="toggleTabClick"><v-icon class="icon" :showTabItem="ui.showTabItem">keyboard_arrow_right</v-icon>
           </v-btn>
-          <v-tab-item class="tab-item">
+          <v-tab-item class="tab-item content-area">
             <div style="font-size: 24px; color: #00b248; font-weight: 600; text-align: center; margin: 12px 0;">문제</div>
-            <v-card flat style="background: rgba(0, 178, 72, 0.6); border-radius: 12px;">
+            <v-card flat style="background: rgba(0, 178, 72, 0.6); border-radius: 12px; min-width: 250px;">
               <v-card-text style="color: white; font-size: 16px;">{{problem.contents}}</v-card-text>
             </v-card>
           </v-tab-item>
-          <v-tab-item> 2
+          <v-tab-item class="tab-item code-area">
+            <div style="font-size: 24px; color: #00b248; font-weight: 600; text-align: center; margin: 12px 0;">code</div>
+            <v-card flat style="background: rgba(0, 178, 72, 0.6); border-radius: 12px; min-width: 250px;">
+              <v-card-text style="color: white; font-size: 16px;">{{code}}</v-card-text>
+            </v-card>
           </v-tab-item>
         </v-tabs>
         

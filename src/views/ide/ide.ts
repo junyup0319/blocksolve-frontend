@@ -47,6 +47,7 @@ export default class Ide extends Vue {
       <category name="Variables" colour="330" custom="VARIABLE"></category>
       <category name="Functions" colour="290" custom="PROCEDURE"></category>
     </xml>`;
+  private code: string = `console.log('code');`;
   private problem: Problem = {
     pid: '',
     title: '',
