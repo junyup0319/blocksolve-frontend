@@ -8,7 +8,7 @@ export default class ProblemList extends Vue {
   private problems: Problem[] = [];
   private clickItem(id: string) {
     this.$router.push({
-      path: `/ide/${id}`,
+      path: `problems/${id}`,
     });
   }
   private mounted() {

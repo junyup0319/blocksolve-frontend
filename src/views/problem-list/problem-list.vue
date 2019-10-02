@@ -6,7 +6,7 @@
     <div class="problemlist-content-area content-zone content-zone-padding">
       <div class="problemlist-despriptor">전체 문제
         <div class="flex"></div>
-        <a-select size="small" defaultValue="25">
+        <a-select size="small" defaultValue="25" style="font-size: 12px">
           <a-select-option value="25">25개씩 보기</a-select-option>
           <a-select-option value="50">50개씩 보기</a-select-option>
           <a-select-option value="75">75개씩 보기</a-select-option>

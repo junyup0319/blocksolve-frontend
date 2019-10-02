@@ -3,7 +3,7 @@ import Router from 'vue-router';
 
 import Main from '@/views/main';
 import ProblemList from '@/views/problem-list';
-import IDE from '@/views/ide';
+import Problem from '@/views/problem';
 
 Vue.use(Router);
 
@@ -17,14 +17,20 @@ export default new Router({
       component: Main,
     },
     {
-      path: '/problemlist',
+      path: '/problems',
       name: 'problem-list',
       component: ProblemList,
     },
     {
-      path: '/ide/:pid',
-      name: 'ide',
-      component: IDE,
+      path: '/problems/category',
+      name: 'category-list',
+      component: ProblemList,
     },
+    {
+      path: '/problems/:pid',
+      name: 'problem',
+      component: Problem,
+    },
+
   ],
 });

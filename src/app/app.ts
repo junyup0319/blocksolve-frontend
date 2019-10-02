@@ -13,5 +13,8 @@ export default class App extends Vue {
   private onChangeRoute() {
     //
   }
+  private mounted() {
+    // console.log(this.$route.path);
+  }
 
 }

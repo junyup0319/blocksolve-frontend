@@ -5,8 +5,8 @@
         <div class="nav-title" @click="$router.push('/')">BlockSolve</div>
         <v-tabs color="#00b248" right>
           <v-tab to="/">메인 페이지</v-tab>
-          <v-tab to="/problemlist">문제 리스트</v-tab>
-          <v-tab to="/problemlist">카테고리<v-icon>arrow_drop_down</v-icon></v-tab>
+          <v-tab to="/problems">문제 리스트</v-tab>
+          <v-tab to="/problems/category">카테고리<v-icon>arrow_drop_down</v-icon></v-tab>
           <v-tab to="/mypage">마이페이지</v-tab>
         </v-tabs>
         <v-btn small fab dark color="#00b248" style="margin: 0 0 12px 24px; width: 32px; height: 32px;">

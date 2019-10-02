@@ -33,20 +33,24 @@
       </div>
       <div class="blockly-area" ref="blocklyArea" style="position: relative;">
         <div id="blocklyDiv" ref="blocklyDiv"></div>
-        <v-btn fab dark color="#00b248" style="position: absolute; right: 116px; bottom: 88px; z-index: 999;">
+        <v-btn fab dark color="#00b248"
+          style="position: absolute; right: 116px; bottom: 88px; z-index: 999;"
+          @click="run">
           <v-icon large>play_arrow</v-icon>
         </v-btn>
-        <v-btn dark color="#00b248" style="position: absolute; right: 100px; bottom: 40px; z-index: 999;">
+        <v-btn dark color="#00b248"
+          style="position: absolute; right: 100px; bottom: 40px; z-index: 999;"
+          @click="submit">
           제출하기
         </v-btn>
       </div>
     </div>
   </div>
 </template>
-<script src='./ide.ts'>
+<script src='./problem.ts'>
 
 </script>
 <style lang='scss' scoped>
 @import "../../style/_common.scss";
-@import "./ide.scss";
+@import "./problem.scss";
 </style>

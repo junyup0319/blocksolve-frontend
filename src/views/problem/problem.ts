@@ -1,7 +1,7 @@
 // file created at 2019-9-24
 // Auto-generated files ide.ts
 
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Watch } from 'vue-property-decorator';
 import { Problem } from '@/lib/form';
 // @ts-ignore
 import Blockly from 'node-blockly/browser';
@@ -11,6 +11,10 @@ import Korean from 'node-blockly/lib/i18n/ko.js';
 import 'node-blockly/lib/blockly_compressed_browser.js';
 import 'node-blockly/lib/javascript_compressed';
 import 'node-blockly/lib/python_compressed';
+
+// @ts-ignore
+import Interpreter from 'js-interpreter';
+
 
 @Component({})
 export default class Ide extends Vue {
@@ -47,9 +51,12 @@ export default class Ide extends Vue {
       <category name="Variables" colour="330" custom="VARIABLE"></category>
       <category name="Functions" colour="290" custom="PROCEDURE"></category>
     </xml>`;
-  private code: string = `console.log('code');`;
+
   private javaScriptCode: string = '';
   private pythonCode: string = '';
+
+  private interpreter!: Interpreter;
+
 
   private problem: Problem = {
     pid: '',
@@ -84,13 +91,11 @@ export default class Ide extends Vue {
     ],
   };
 
-  private onResize() {
-    this.$refs.blocklyDiv.style.left = 0 + 'px';
-    this.$refs.blocklyDiv.style.top = 0 + 'px';
-    this.$refs.blocklyDiv.style.width = this.$refs.blocklyArea.offsetWidth + 'px';
-    this.$refs.blocklyDiv.style.height = this.$refs.blocklyArea.offsetHeight + 'px';
-    // this.$refs.blocklyDiv.style.zIndex = '1';
-    Blockly.svgResize(this.workspace);
+
+  @Watch('javaScriptCode')
+  private onCodeChange() {
+    // TODO
+    // console.log('code change => server call');
   }
 
   private toggleTabClick() {
@@ -98,6 +103,15 @@ export default class Ide extends Vue {
     setTimeout(() => {
       Blockly.svgResize(this.workspace);
     }, 200);
+  }
+
+  private onResize() {
+    this.$refs.blocklyDiv.style.left = 0 + 'px';
+    this.$refs.blocklyDiv.style.top = 0 + 'px';
+    this.$refs.blocklyDiv.style.width = this.$refs.blocklyArea.offsetWidth + 'px';
+    this.$refs.blocklyDiv.style.height = this.$refs.blocklyArea.offsetHeight + 'px';
+    // this.$refs.blocklyDiv.style.zIndex = '1';
+    Blockly.svgResize(this.workspace);
   }
 
   private initBlockly() {
@@ -133,6 +147,37 @@ export default class Ide extends Vue {
   private updateBlockCode() {
     this.javaScriptCode = Blockly.JavaScript.workspaceToCode(this.workspace);
     this.pythonCode = Blockly.Python.workspaceToCode(this.workspace);
+  }
+
+  private initApi(interpreter: any, scope: any) {
+    // Add an API function for highlighting blocks.
+    // const wrapper = (id: string) => {
+    //   return this.workspace.highlightBlock(id);
+    // };
+    // interpreter.setProperty(scope, 'highlightBlock',
+    //     interpreter.createNativeFunction(wrapper));
+
+    // Add an API function for the alert() block.
+    let wrapper2 = (text: string) => {
+      return alert(arguments.length ? text : '');
+    };
+    interpreter.setProperty(scope, 'alert',
+        interpreter.createNativeFunction(wrapper2));
+
+    // Add an API function for the prompt() block.
+    wrapper2 = (text) => {
+      return prompt(text);
+    };
+    interpreter.setProperty(scope, 'prompt',
+        interpreter.createNativeFunction(wrapper2));
+  }
+  private run() {
+    this.interpreter = new Interpreter(this.javaScriptCode, this.initApi);
+    this.interpreter.run();
+  }
+  private submit() {
+    // TODO
+    // console.log('submit click => server call');
   }
 
   private mounted() {
