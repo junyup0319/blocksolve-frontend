@@ -1,8 +1,6 @@
 // file created at 2019-9-24
 // Auto-generated files ide.scss
-// .v-tab--active {
-//   border-right: solid 2px $main-color;
-// }
+
 .ide-area {
   display: flex;
   height: calc(100vh - 80px);
@@ -13,8 +11,9 @@
     box-shadow: 5px 0px 10px 1px #eee;
     overflow: hidden;
     transition: .2s;
+    position: relative;
     &[showTabItem] {
-      width: 400px;
+      width: 480px;
       transition: .2s;
     }
     .tab-button {

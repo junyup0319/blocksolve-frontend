@@ -48,6 +48,9 @@ export default class Ide extends Vue {
       <category name="Functions" colour="290" custom="PROCEDURE"></category>
     </xml>`;
   private code: string = `console.log('code');`;
+  private javaScriptCode: string = '';
+  private pythonCode: string = '';
+
   private problem: Problem = {
     pid: '',
     title: '',
@@ -127,8 +130,16 @@ export default class Ide extends Vue {
     });
   }
 
+  private updateBlockCode() {
+    this.javaScriptCode = Blockly.JavaScript.workspaceToCode(this.workspace);
+    this.pythonCode = Blockly.Python.workspaceToCode(this.workspace);
+  }
+
   private mounted() {
     this.initBlockly();
+
+    this.workspace.addChangeListener(this.updateBlockCode);
+
     // test code
     this.problem = {
       pid: this.$route.params.pid,
