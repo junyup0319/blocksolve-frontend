@@ -3,12 +3,10 @@ export interface Problem {
   title: string;
   category: string;
   creator: string;
-  submitCount: number;
-  correctRate: string;
-  submitStatus: string;
-  contents: string;
-  inputDetails: string;
-  outputDetails: string;
-  exInput: Array<{inputId: string, value: number[]}>;
-  exOutput: Array<{outputId: string, value: number[]}>;
+  numSubmission: number;
+  correctRate: number;
+  content: string;
+  inputDetail: string;
+  outputDetail: string;
+  initXML: string;
 }

@@ -3,7 +3,9 @@ import Router from 'vue-router';
 
 import Main from '@/views/main';
 import ProblemList from '@/views/problem-list';
+import CategoryList from '@/views/category-list';
 import Problem from '@/views/problem';
+import MyPage from '@/views/myPage';
 
 Vue.use(Router);
 
@@ -24,12 +26,17 @@ export default new Router({
     {
       path: '/problems/category',
       name: 'category-list',
-      component: ProblemList,
+      component: CategoryList,
     },
     {
       path: '/problems/:pid',
       name: 'problem',
       component: Problem,
+    },
+    {
+      path: '/mypage',
+      name: 'myPage',
+      component: MyPage,
     },
 
   ],

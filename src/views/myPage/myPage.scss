@@ -1,0 +1,111 @@
+// file created at 2019-10-4
+// Auto-generated files myPage.scss
+.profile-area {
+  display: flex;
+  .image-area {
+    width: 200px;
+    height: 200px;
+    border: solid 1px;
+    border-radius: 50%;
+  }
+  .name-area {
+    flex: 1;
+    border: solid 1px;
+    text-align: center;
+    padding-top: 40px;
+    .name {
+      font-size: 40px;
+      font-weight: 500;
+      padding-bottom: 8px;
+    }
+    .email {
+      font-size: 28px;
+    }
+    
+  }
+}
+
+.table-descriptor {
+  margin-top: 36px;
+  font-weight: normal;
+  font-size: 16px;
+  color: #797979;
+  display: flex;
+}
+.table-area {
+  width: 100%;
+  margin-top: 12px;
+  color: #444;
+  background: #fff;
+  .table-item {
+    width: 100%;
+    align-items: center;
+    &.header {
+      display: flex;
+      height: 44px;
+      background: #fefefe;
+      font-size: 14px;
+      border-top: solid 2px #999;
+      border-bottom: solid 2px #999;
+      font-weight: bold;
+      color: #444 !important;
+    }
+    &.items {
+      height: 39px;
+      padding: 10px 0;
+      font-size: 12px;
+      border-bottom: solid 1px #ddd;
+      overflow-y: hidden;
+      &[open] {
+        height: auto;
+        .content {
+          .icon {
+            background: red;
+            transform: rotate(180deg);
+          }
+        }
+        
+      }
+      .start-item {
+        font-weight: 500;
+      }
+      
+      &:hover {
+        cursor: pointer;
+        // font-weight: 500;
+        .start-item {
+          // color: $main-color;
+          // text-decoration: underline $main-color;
+        }
+      }
+    }
+
+    .start-item {
+      width: 200px;
+      min-width: 200px;
+      max-width: 200px;
+      padding-left: 50px;
+    }
+    .options-1 {
+      flex: 1;
+    }
+    .options-2 {
+      flex: 2;
+    }
+    .end-item {
+      width: 160px;
+      min-width: 160px;
+      max-width: 160px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+
+
+    .details {
+      margin-left: 100px;
+    }
+  }
+  
+}

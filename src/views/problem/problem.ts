@@ -15,6 +15,7 @@ import 'node-blockly/lib/python_compressed';
 // @ts-ignore
 import Interpreter from 'js-interpreter';
 
+import ProblemApi from '@/lib/api/problemApi';
 
 @Component({})
 export default class Ide extends Vue {
@@ -63,39 +64,18 @@ export default class Ide extends Vue {
     title: '',
     category: '',
     creator: '',
-    submitCount: 0,
-    correctRate: 0 + '%',
-    submitStatus: 'correct',
-    contents: '',
-    inputDetails: '',
-    outputDetails: '',
-    exInput: [
-      {
-          inputId: '',
-          value: [],
-      },
-      {
-          inputId: '',
-          value : [],
-      },
-    ],
-    exOutput: [
-      {
-        outputId: '',
-        value: [],
-      },
-      {
-        outputId: '',
-        value : [],
-      },
-    ],
+    numSubmission: 0,
+    correctRate: 0,
+    content: '',
+    inputDetail: '',
+    outputDetail: '',
+    initXML: '',
   };
-
 
   @Watch('javaScriptCode')
   private onCodeChange() {
     // TODO
-    // console.log('code change => server call');
+    console.log('code change => server call');
   }
 
   private toggleTabClick() {
@@ -177,46 +157,21 @@ export default class Ide extends Vue {
   }
   private submit() {
     // TODO
-    // console.log('submit click => server call');
+    console.log('submit click => server call');
   }
 
-  private mounted() {
+  private async mounted() {
+    try {
+      this.problem = await ProblemApi.getProblem(this.$route.params.pid);
+    } catch (e) {
+      console.error(e);
+      alert('server error');
+      this.$router.go(-1);
+    }
+
     this.initBlockly();
 
     this.workspace.addChangeListener(this.updateBlockCode);
 
-    // test code
-    this.problem = {
-      pid: this.$route.params.pid,
-      title: 'A+B',
-      category: 'basic',
-      creator: 'Joylish',
-      submitCount: Math.floor(Math.random() * 100),
-      correctRate: (Math.random() * 100).toFixed(2) + '%',
-      submitStatus: 'correct',
-      contents: '두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.',
-      inputDetails: '첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)',
-      outputDetails: '첫째 줄에 A-B를 출력한다.',
-      exInput: [
-        {
-            inputId: '1',
-            value: [2, 3],
-        },
-        {
-            inputId: '2',
-            value : [4, 3],
-        },
-      ],
-      exOutput: [
-        {
-          outputId: '1',
-          value: [2, 3],
-        },
-        {
-          outputId: '2',
-          value : [4, 3],
-        },
-      ],
-    };
   }
 }
