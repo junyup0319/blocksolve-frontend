@@ -2,24 +2,36 @@
 // Auto-generated files myPage.scss
 .profile-area {
   display: flex;
+  background: #fff;
+  border-radius: 8px;
+  padding-left: 80px;
   .image-area {
     width: 200px;
     height: 200px;
-    border: solid 1px;
-    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .image {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
   }
   .name-area {
     flex: 1;
-    border: solid 1px;
-    text-align: center;
-    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 80px;
+    color: #474747;
     .name {
-      font-size: 40px;
-      font-weight: 500;
+      font-size: 32px;
+      font-weight: 600;
       padding-bottom: 8px;
     }
     .email {
-      font-size: 28px;
+      font-size: 24px;
     }
     
   }
@@ -56,12 +68,18 @@
       font-size: 12px;
       border-bottom: solid 1px #ddd;
       overflow-y: hidden;
+      .content {
+        &:hover {
+          cursor: pointer;
+        }
+      }
       &[open] {
         height: auto;
+        transition: 2s;
         .content {
           .icon {
-            background: red;
             transform: rotate(180deg);
+            
           }
         }
         
@@ -70,14 +88,6 @@
         font-weight: 500;
       }
       
-      &:hover {
-        cursor: pointer;
-        // font-weight: 500;
-        .start-item {
-          // color: $main-color;
-          // text-decoration: underline $main-color;
-        }
-      }
     }
 
     .start-item {
@@ -104,7 +114,19 @@
 
 
     .details {
-      margin-left: 100px;
+      margin: 4px 0 4px 180px;
+      .detail-item {
+        padding: 4px;
+        display: flex;
+        text-align: left;
+        align-items: center;
+        .detail-content {
+          flex: 1;
+        }
+        .detail-content-end {
+          margin-right: 20px;
+        }
+      }
     }
   }
   

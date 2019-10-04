@@ -11,11 +11,13 @@
           </v-tab>
           <v-tab to="/mypage">마이페이지</v-tab>
         </v-tabs>
-        <v-btn v-if="$store.getters.user === null" small fab dark color="#00b248" style="margin: 0 0 12px 24px; width: 32px; height: 32px;"
-          @click="login">
-          <v-icon small>person</v-icon>
-        </v-btn>
-        <v-btn v-else @click="logout" dark color="#ccc" style="margin: 0 0 12px 24px; width: 52px; height: 32px;">logout</v-btn>
+        <div style="min-width: 100px; display: flex; align-items; bottom; justify-content: center; padding-bottom: 8px;">
+          <v-btn v-if="$store.getters.user === null" small fab dark color="#00b248" style="width: 32px; height: 32px;"
+            @click="login">
+            <v-icon small>person</v-icon>
+          </v-btn>
+          <v-btn v-else @click="logout" dark color="#ccc" style="width: 52px; height: 32px;">logout</v-btn>
+        </div>
       </div>
     </div>
 
