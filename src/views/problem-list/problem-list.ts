@@ -16,6 +16,7 @@ export default class ProblemList extends Vue {
   private async mounted() {
     try {
       this.problems = await ProblemApi.getProblems();
+      console.log(this.problems);
     } catch (e) {
       alert('server error');
       this.$router.go(-1);
