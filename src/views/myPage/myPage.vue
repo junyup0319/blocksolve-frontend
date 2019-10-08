@@ -21,9 +21,7 @@
             <div class="solve-info-area">
               <div class="content">
                 <div class="desc">내가 푼 문제</div>
-                <div class="count">
-                  1
-                </div>
+                <div class="count">1</div>
               </div>
               <div class="content">
                 <div class="desc">전체 문제</div>

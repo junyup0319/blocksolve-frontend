@@ -17,6 +17,10 @@ import Interpreter from 'js-interpreter';
 
 import ProblemApi from '@/lib/api/problemApi';
 
+import _ from 'lodash';
+import { debounce } from 'typescript-debounce-decorator';
+
+
 @Component({})
 export default class Ide extends Vue {
   public $refs!: {
@@ -72,10 +76,15 @@ export default class Ide extends Vue {
     initXML: '',
   };
 
+
+  @debounce(1000, { leading: false })
+  private onCodeChangeServerCall() {
+    console.log('code change => server call');
+  }
+
   @Watch('javaScriptCode')
   private onCodeChange() {
-    // TODO
-    console.log('code change => server call');
+    this.onCodeChangeServerCall();
   }
 
   private toggleTabClick() {
@@ -158,6 +167,24 @@ export default class Ide extends Vue {
   private submit() {
     // TODO
     console.log('submit click => server call');
+  }
+
+  private initCode() {
+    // TODO
+    // const xml = Blockly.Xml.workspaceToDom(this.workspace);
+
+    let dom;
+    // TODO 서버에서 넘어오는거 바뀌면 그냥 initXML 바로 넣어도됨!
+    if (this.problem.initXML === null) {
+      dom = Blockly.Xml.textToDom('<xml></xml>');
+    } else {
+      dom = Blockly.Xml.textToDom(this.problem.initXML);
+    }
+
+    Blockly.Xml.clearWorkspaceAndLoadFromXml(dom, this.workspace);
+    // 그냥 블록 추가 코드
+    // Blockly.Xml.domToWorkspace(dom, this.workspace);
+
   }
 
   private async mounted() {
