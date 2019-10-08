@@ -28,10 +28,28 @@
     .name {
       font-size: 32px;
       font-weight: 600;
-      padding-bottom: 8px;
     }
     .email {
-      font-size: 24px;
+      font-size: 16px;
+    }
+    .solve-info-area {
+      margin-top: 20px;
+      display: flex;
+      .content {
+        height: 100%;
+        margin-right: 60px;
+        .desc {
+          height: 30%;
+          font-size: 12px;
+          color: #999;
+        }
+        .count {
+          color: $main-color;
+          text-align: center;
+          height: 70%;
+          font-size: 32px;
+        }
+      }
     }
     
   }

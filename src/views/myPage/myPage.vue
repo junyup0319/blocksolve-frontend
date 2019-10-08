@@ -12,14 +12,24 @@
         <div class="profile-area">
           <div class="image-area">
             <div class="image">
-              <img v-if="$store.getters.user"
-                :src="$store.getters.user.photoURL"
-                width="100%" height="100%"/>
+              <img :src="$store.getters.user.photoURL" width="100%" height="100%"/>
             </div>
           </div>
           <div class="name-area">
-            <div v-if="$store.getters.user" class="name">{{$store.getters.user.displayName}}</div>
-            <div v-if="$store.getters.user" class="email">{{$store.getters.user.email}}</div>
+            <div class="name">{{$store.getters.user.displayName}}</div>
+            <div class="email">{{$store.getters.user.email}}</div>
+            <div class="solve-info-area">
+              <div class="content">
+                <div class="desc">내가 푼 문제</div>
+                <div class="count">
+                  1
+                </div>
+              </div>
+              <div class="content">
+                <div class="desc">전체 문제</div>
+                <div class="count">10</div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="table-descriptor">나의 풀이정보</div>

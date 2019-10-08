@@ -6,9 +6,9 @@
         <v-tabs color="#00b248" right>
           <v-tab to="/">메인 페이지</v-tab>
           <v-tab to="/problems">문제 리스트</v-tab>
-          <v-tab style="position: relative; padding-right: 12px;">카테고리
+          <!-- <v-tab style="position: relative; padding-right: 12px;">카테고리
             <v-icon>arrow_drop_down</v-icon>
-          </v-tab>
+          </v-tab> -->
           <v-tab to="/mypage">마이페이지</v-tab>
         </v-tabs>
         <div style="width: 100px; padding-bottom: 8px; margin-left: 12px;
