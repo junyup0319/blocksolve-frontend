@@ -14,6 +14,7 @@ export default class ProblemList extends Vue {
     });
   }
   private async mounted() {
+    this.$loadingDefault.on();
     try {
       this.problems = await ProblemApi.getProblems();
       console.log(this.problems);
@@ -21,6 +22,7 @@ export default class ProblemList extends Vue {
       alert('server error');
       this.$router.go(-1);
     }
+    this.$loadingDefault.off();
 
   }
 }

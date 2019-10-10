@@ -41,7 +41,7 @@
           제출하기
         </v-btn>
         <v-btn dark color="#00b248"
-          style="position: absolute; right: 100px; bottom: 40px; z-index: 999;"
+          style="; position: absolute; right: 100px; bottom: 40px; z-index: 999;"
           @click="initCode">
           코드초기화
         </v-btn>

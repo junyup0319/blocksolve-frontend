@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import {Component, Watch} from 'vue-property-decorator';
 import {auth} from '@/lib/firebase';
+import Loading from '@/plugins/loading';
 
+Vue.use(Loading);
 @Component({})
 export default class App extends Vue {
   private tabItems = ['Foo', 'Bar', 'Fizz', 'Buzz'];
@@ -35,6 +37,8 @@ export default class App extends Vue {
       this.$store.commit('signIn', u);
       console.warn(this.$store.getters.user);
     });
+
+
   }
 
 }

@@ -188,6 +188,7 @@ export default class Ide extends Vue {
   }
 
   private async mounted() {
+    this.$loadingDefault.on();
     try {
       this.problem = await ProblemApi.getProblem(this.$route.params.pid);
     } catch (e) {
@@ -199,6 +200,7 @@ export default class Ide extends Vue {
     this.initBlockly();
 
     this.workspace.addChangeListener(this.updateBlockCode);
+    this.$loadingDefault.off();
 
   }
 }
