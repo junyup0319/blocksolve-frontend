@@ -1,13 +1,15 @@
 export interface Problem {
   pid: string;
   title: string;
+  content: string;
   category: string;
   creator: string;
+  createdAt: number;
   numSub: number;
   correctRate: number;
-  content: string;
   inputDetail: string;
   outputDetail: string;
+  example: string;
   initXML: string;
 }
 

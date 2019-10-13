@@ -74,6 +74,8 @@ export default class Ide extends Vue {
     inputDetail: '',
     outputDetail: '',
     initXML: '',
+    example: [],
+    createdAt: 0,
   };
 
 
