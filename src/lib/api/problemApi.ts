@@ -12,7 +12,7 @@ export class ProblemApi {
   }
   public async getProblem(pid: string): Promise<ProblemForm> {
     const res = await axios.get(`${host}/problems/${pid}`);
-    return res.data.data[0];
+    return res.data.data;
   }
   public async getProblemsByCategory(category: string): Promise<ProblemForm[]> {
     const res = await axios.get(`${host}/problems?category=${category}`);
