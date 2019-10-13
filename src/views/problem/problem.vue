@@ -22,7 +22,7 @@
           <v-tab-item class="tab-item code-area">
             <div style="font-size: 24px; color: #00b248; font-weight: 600; text-align: center; margin: 12px 0;">code</div>
             <v-card flat style="background: rgba(0, 178, 72, 0.6); border-radius: 12px; min-width: 250px;">
-              <v-card-text style="color: white; font-size: 16px; white-space: pre;">{{javaScriptCode}}</v-card-text>
+              <v-card-text style="color: white; font-size: 16px; white-space: pre;">{{pythonCode}}</v-card-text>
             </v-card>
           </v-tab-item>
         </v-tabs>

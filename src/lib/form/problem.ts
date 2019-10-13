@@ -3,10 +3,18 @@ export interface Problem {
   title: string;
   category: string;
   creator: string;
-  numSubmission: number;
+  numSub: number;
   correctRate: number;
   content: string;
   inputDetail: string;
   outputDetail: string;
   initXML: string;
+}
+
+export interface Solution {
+  uid: string;
+  pid: string;
+  savedAt: number;
+  savedXML: string;
+  status: string;
 }

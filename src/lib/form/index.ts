@@ -1,5 +1,7 @@
-import {Problem} from './problem';
+import {Problem, Solution} from './problem';
+
 
 export {
   Problem,
+  Solution,
 };

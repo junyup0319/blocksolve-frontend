@@ -68,7 +68,7 @@ export default class Ide extends Vue {
     title: '',
     category: '',
     creator: '',
-    numSubmission: 0,
+    numSub: 0,
     correctRate: 0,
     content: '',
     inputDetail: '',
@@ -191,15 +191,29 @@ export default class Ide extends Vue {
     this.$loadingDefault.on();
     try {
       this.problem = await ProblemApi.getProblem(this.$route.params.pid);
+      console.log('problem: ', this.problem);
     } catch (e) {
-      console.error(e);
-      alert('server error');
+      alert('잘못된 접근입니다.');
       this.$router.go(-1);
     }
+
 
     this.initBlockly();
 
     this.workspace.addChangeListener(this.updateBlockCode);
+
+
+    try {
+      const solution = await ProblemApi.getSavedSolution('1', this.problem.pid);
+      // TODO
+      // 알림창 띄워서 이전에 푼걸 가져올지 새로 풀지를 선택
+      const dom = Blockly.Xml.textToDom(solution.savedXML);
+      console.log('savedXML:', dom);
+      Blockly.Xml.clearWorkspaceAndLoadFromXml(dom, this.workspace);
+    } catch (e) {
+      // 문제가 없는 경우
+    }
+
     this.$loadingDefault.off();
 
   }
