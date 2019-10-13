@@ -74,7 +74,7 @@ export default class Ide extends Vue {
     inputDetail: '',
     outputDetail: '',
     initXML: '',
-    example: [],
+    example: '',
     createdAt: 0,
   };
 
@@ -196,7 +196,7 @@ export default class Ide extends Vue {
       console.log('problem: ', this.problem);
     } catch (e) {
       alert('잘못된 접근입니다.');
-      this.$router.go(-1);
+      // this.$router.go(-1);
     }
 
 
@@ -207,16 +207,21 @@ export default class Ide extends Vue {
 
     try {
       const solution = await ProblemApi.getSavedSolution('1', this.problem.pid);
-      // TODO
-      // 알림창 띄워서 이전에 푼걸 가져올지 새로 풀지를 선택
-      const dom = Blockly.Xml.textToDom(solution.savedXML);
-      console.log('savedXML:', dom);
-      Blockly.Xml.clearWorkspaceAndLoadFromXml(dom, this.workspace);
+      try {
+        await this.$dialog.on('title', '저장된 블록이 있습니다.\n저장된 블록을 가져오시겠습니까?', '가져오기', '취소');
+        // 가져오기 선택
+        const dom = Blockly.Xml.textToDom(solution.savedXML);
+        console.log('savedXML:', dom);
+        Blockly.Xml.clearWorkspaceAndLoadFromXml(dom, this.workspace);
+      } catch (e) {
+        // 안가져오기
+      }
     } catch (e) {
       // 문제가 없는 경우
     }
 
     this.$loadingDefault.off();
+
 
   }
 }
