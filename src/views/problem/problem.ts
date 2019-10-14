@@ -83,8 +83,14 @@ export default class Ide extends Vue {
 
 
   @debounce(1000, { leading: false })
-  private onCodeChangeServerCall() {
-    console.log('code change => server call');
+  private async onCodeChangeServerCall() {
+    try {
+      await ProblemApi.saveSolution('1', this.$route.params.pid,
+        Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)));
+      console.log('저장 성공!');
+    } catch (e) {
+      console.error('저장 실패!', e);
+    }
   }
 
   @Watch('javaScriptCode')
@@ -171,17 +177,8 @@ export default class Ide extends Vue {
   }
   private async submit() {
     // TODO
-    // console.log('code', Blockly.Xml.domToPrettyText(this.workspace));
-    // console.log(Blockly.Xml.workspaceToDom(this.workspace, true));
-    console.log(Blockly.Xml.workspaceToDom(this.workspace));
-    try {
-      this.$loadingDefault.on();
-      await ProblemApi.saveSolution('1', this.$route.params.pid,
-        Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)));
-    } catch (e) {
-      //
-    }
-    this.$loadingDefault.off();
+    // 아직 제출 api 없음
+    console.log(Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)));
   }
 
   private initCode() {
