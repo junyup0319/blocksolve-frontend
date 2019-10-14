@@ -167,9 +167,9 @@ export default class Ide extends Vue {
     this.interpreter = new Interpreter(this.javaScriptCode, this.initApi);
     this.interpreter.run();
   }
-  private submit() {
+  private async submit() {
     // TODO
-    console.log('submit click => server call');
+    console.log(await ProblemApi.saveSolution('1', this.$route.params.pid, Blockly.Xml.workspaceToDom(this.workspace)));
   }
 
   private initCode() {
@@ -193,19 +193,15 @@ export default class Ide extends Vue {
   private async mounted() {
     this.$loadingDefault.on();
     try {
-      console.log(this.$route.params.pid);
       this.problem = await ProblemApi.getProblem(this.$route.params.pid);
       console.log('problem: ', this.problem);
     } catch (e) {
       alert('잘못된 접근입니다.');
       // this.$router.go(-1);
     }
-
-
     this.initBlockly();
 
     this.workspace.addChangeListener(this.updateBlockCode);
-
 
     try {
       const solution = await ProblemApi.getSavedSolution('1', this.problem.pid);
@@ -213,15 +209,19 @@ export default class Ide extends Vue {
       try {
         await this.$dialog.on('title', '저장된 블록이 있습니다.\n저장된 블록을 가져오시겠습니까?', '가져오기', '취소');
         // 가져오기 선택
+        // TODO
+        // loading on & off
+        console.log('solution', solution);
         const dom = Blockly.Xml.textToDom(solution.savedXML);
         console.log('savedXML:', dom);
         Blockly.Xml.clearWorkspaceAndLoadFromXml(dom, this.workspace);
       } catch (e) {
-        // 안가져오기
+        this.initCode();
       }
     } catch (e) {
       // 저장된 solution이 없는 경우
-
+      // 그냥 진행
+      console.log('저장된 solution이 없음');
     }
 
     this.$loadingDefault.off();
