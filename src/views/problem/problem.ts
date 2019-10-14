@@ -31,6 +31,8 @@ export default class Ide extends Vue {
   private ui = {
     showTabItem: true,
   };
+  private testXMLCode = '<xml><block type="text_print" id="sN?1S6lhQ+B5VJCpVZPR" x="50" y="90"><value name="TEXT"><block type="text" id="3)w9@)t+e|Gj@K=q17q]"><field name="TEXT">abc</field></block></value></block></xml>';
+  private testXMLCodeNoID = '<xml><block type="text_print" x="30" y="90"><value name="TEXT"><block type="text"><field name="TEXT">abc</field></block></value></block></xml>';
 
   private workspace = new Blockly.Workspace();
   private toolboxXML =
@@ -169,7 +171,17 @@ export default class Ide extends Vue {
   }
   private async submit() {
     // TODO
-    console.log(await ProblemApi.saveSolution('1', this.$route.params.pid, Blockly.Xml.workspaceToDom(this.workspace)));
+    // console.log('code', Blockly.Xml.domToPrettyText(this.workspace));
+    // console.log(Blockly.Xml.workspaceToDom(this.workspace, true));
+    console.log(Blockly.Xml.workspaceToDom(this.workspace));
+    try {
+      this.$loadingDefault.on();
+      await ProblemApi.saveSolution('1', this.$route.params.pid,
+        Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)));
+    } catch (e) {
+      //
+    }
+    this.$loadingDefault.off();
   }
 
   private initCode() {
@@ -216,6 +228,7 @@ export default class Ide extends Vue {
         console.log('savedXML:', dom);
         Blockly.Xml.clearWorkspaceAndLoadFromXml(dom, this.workspace);
       } catch (e) {
+
         this.initCode();
       }
     } catch (e) {
