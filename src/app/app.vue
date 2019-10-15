@@ -11,7 +11,7 @@
           </v-tab> -->
           <v-tab to="/mypage">마이페이지</v-tab>
         </v-tabs>
-        <div style="width: 100px; padding-bottom: 8px; margin-left: 12px;
+        <div style="width: 120px; padding-bottom: 8px; margin-left: 12px;
           display: flex; align-items; bottom; justify-content: center;">
           <v-btn v-if="$store.getters.user === null" small fab dark color="#00b248" style="width: 32px; height: 32px;"
             @click="login">

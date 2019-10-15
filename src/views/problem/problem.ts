@@ -149,7 +149,7 @@ export default class Ide extends Vue {
     this.pythonCode = Blockly.Python.workspaceToCode(this.workspace);
   }
 
-  private initApi(interpreter: any, scope: any) {
+  private initApi(interpreter: Interpreter, scope: any) {
     // Add an API function for highlighting blocks.
     // const wrapper = (id: string) => {
     //   return this.workspace.highlightBlock(id);

@@ -45,19 +45,25 @@
     }
 
     .start-item {
-      width: 200px;
-      min-width: 200px;
-      max-width: 200px;
-      padding-left: 50px;
-
+      width: 100px;
+      min-width: 100px;
+      max-width: 100px;
+      text-align: center;
+      // border: solid 1px;
+    }
+    .options {
+      flex: 0.5;
     }
     .options-1 {
+      // border: solid 1px;
       flex: 1;
     }
     .options-2 {
+      // border: solid 1px;
       flex: 2;
     }
     .end-item {
+      // border: solid 1px;
       width: 200px;
       min-width: 200px;
       max-width: 200px;
