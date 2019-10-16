@@ -54,15 +54,15 @@
             제출하기
           </v-btn>
           <v-btn dark color="#00b248"
-            style="; position: absolute; right: 100px; bottom: 40px; z-index: 999;"
+            style="position: absolute; right: 100px; bottom: 40px; z-index: 999;"
             @click="initCode">
             코드초기화
           </v-btn>
         </div>
         <div class="console-area">
           <div class="console-title">실행 결과</div>
-          <div class="console-content">
-            <div v-for="(res, i) in alertResults" :key="'alert' + i">{{res}}</div>
+          <div class="console-content" ref="consoleWindow">
+            <div v-for="(res, i) in consoleResults" :key="'alert' + i">{{res}}</div>
           </div>
           
         </div>

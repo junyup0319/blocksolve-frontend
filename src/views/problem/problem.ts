@@ -27,8 +27,8 @@ export default class Ide extends Vue {
   public $refs!: {
     blocklyDiv: HTMLElement,
     blocklyArea: HTMLElement,
+    consoleWindow: HTMLElement,
   };
-  private alertResults: string[] = ['test1', 'test2'];
   private ui = {
     showTabItem: true,
   };
@@ -65,6 +65,7 @@ export default class Ide extends Vue {
   private pythonCode: string = '';
 
   private interpreter!: Interpreter;
+  private consoleResults: string[] = ['test1', 'test2'];
 
 
   private problem: Problem = {
@@ -159,12 +160,15 @@ export default class Ide extends Vue {
     //     interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the alert() block.
-    const alertWrapper = (text: string) => {
-      return this.alertResults.push(arguments.length ? text : '');
+    const consoleWrapper = (text: string) => {
+      setTimeout(() => {
+        this.$refs.consoleWindow.scrollTop = this.$refs.consoleWindow.scrollHeight;
+      }, 100);
+      return this.consoleResults.push(arguments.length ? text : '');
       // return alert(arguments.length ? text : '');
     };
     interpreter.setProperty(scope, 'alert',
-        interpreter.createNativeFunction(alertWrapper));
+        interpreter.createNativeFunction(consoleWrapper));
 
     // Add an API function for the prompt() block.
     const wrapper = (text: string) => {
@@ -174,6 +178,7 @@ export default class Ide extends Vue {
         interpreter.createNativeFunction(wrapper));
   }
   private run() {
+    console.log(this.$refs.consoleWindow.scrollHeight);
     this.interpreter = new Interpreter(this.javaScriptCode, this.initInterpreterApi);
     this.interpreter.run();
   }
