@@ -28,6 +28,7 @@ export default class Ide extends Vue {
     blocklyDiv: HTMLElement,
     blocklyArea: HTMLElement,
   };
+  private alertResults: string[] = ['test1', 'test2'];
   private ui = {
     showTabItem: true,
   };
@@ -149,7 +150,7 @@ export default class Ide extends Vue {
     this.pythonCode = Blockly.Python.workspaceToCode(this.workspace);
   }
 
-  private initApi(interpreter: Interpreter, scope: any) {
+  private initInterpreterApi(interpreter: Interpreter, scope: any) {
     // Add an API function for highlighting blocks.
     // const wrapper = (id: string) => {
     //   return this.workspace.highlightBlock(id);
@@ -158,21 +159,22 @@ export default class Ide extends Vue {
     //     interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the alert() block.
-    let wrapper2 = (text: string) => {
-      return alert(arguments.length ? text : '');
+    const alertWrapper = (text: string) => {
+      return this.alertResults.push(arguments.length ? text : '');
+      // return alert(arguments.length ? text : '');
     };
     interpreter.setProperty(scope, 'alert',
-        interpreter.createNativeFunction(wrapper2));
+        interpreter.createNativeFunction(alertWrapper));
 
     // Add an API function for the prompt() block.
-    wrapper2 = (text) => {
+    const wrapper = (text: string) => {
       return prompt(text);
     };
     interpreter.setProperty(scope, 'prompt',
-        interpreter.createNativeFunction(wrapper2));
+        interpreter.createNativeFunction(wrapper));
   }
   private run() {
-    this.interpreter = new Interpreter(this.javaScriptCode, this.initApi);
+    this.interpreter = new Interpreter(this.javaScriptCode, this.initInterpreterApi);
     this.interpreter.run();
   }
   private async submit() {

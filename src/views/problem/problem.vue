@@ -14,50 +14,62 @@
           <v-tab style="border-bottom: solid 1px rgba(0, 178, 72, 0.4);"><v-icon>description</v-icon></v-tab>
           <v-tab style="border-bottom: solid 1px rgba(0, 178, 72, 0.4);"><v-icon>code</v-icon></v-tab>
           <v-tab-item class="tab-item">
-            <div style="font-size: 24px; color: #00b248; font-weight: 600; text-align: center; margin: 12px 0;">문제</div>
-            <v-card flat style="background: rgba(0, 178, 72, 0.6); border-radius: 12px; min-width: 250px; margin-bottom: 20px;">
+            <div class="tab-item-title">문제</div>
+            <v-card flat class="tab-item-content">
               <v-card-text style="color: white; font-size: 16px;" v-html="problem.content"></v-card-text>
             </v-card>
-            <div style="font-size: 18px; color: #00b248; font-weight: 600; text-align: center; margin: 8px 0;">입력 예시</div>
-            <v-card flat style="background: rgba(0, 178, 72, 0.6); border-radius: 12px; min-width: 250px;">
+            <div class="tab-item-title sub">입력 예시</div>
+            <v-card flat class="tab-item-content">
               <v-card-text style="color: white; font-size: 16px;" v-html="problem.inputDetail"></v-card-text>
             </v-card>
-            <div style="font-size: 18px; color: #00b248; font-weight: 600; text-align: center; margin: 12px 0;">출력 예시</div>
-            <v-card flat style="background: rgba(0, 178, 72, 0.6); border-radius: 12px; min-width: 250px;">
+            <div class="tab-item-title sub">출력 예시</div>
+            <v-card flat class="tab-item-content">
               <v-card-text style="color: white; font-size: 16px;" v-html="problem.outputDetail"></v-card-text>
             </v-card>
-            <div style="font-size: 18px; color: #00b248; font-weight: 600; text-align: center; margin: 12px 0;">예시</div>
-            <v-card flat style="background: rgba(0, 178, 72, 0.6); border-radius: 12px; min-width: 250px;">
-              <v-card-text style="color: white; font-size: 16px;" v-html="problem.example"></v-card-text>
+            <div class="tab-item-title sub">예시</div>
+            <v-card v-for="(example, i) in problem.example" :key="'example' + i"
+              flat class="tab-item-content">
+              <v-card-text style="color: white; font-size: 16px;">예시{{i + 1}}<br/>&nbsp;&nbsp;input: {{example.input}} &nbsp;&nbsp; / &nbsp;&nbsp;  output: {{example.output}}</v-card-text>
             </v-card>
           </v-tab-item>
           <v-tab-item class="tab-item">
-            <div style="font-size: 24px; color: #00b248; font-weight: 600; text-align: center; margin: 12px 0;">code</div>
+            <div class="tab-item-title">code</div>
             <v-card flat style="background: rgba(0, 178, 72, 0.6); border-radius: 12px; min-width: 250px;">
               <v-card-text style="color: white; font-size: 16px; white-space: pre;">{{pythonCode}}</v-card-text>
             </v-card>
           </v-tab-item>
         </v-tabs>
-        
       </div>
-      <div class="blockly-area" ref="blocklyArea" style="position: relative;">
-        <div id="blocklyDiv" ref="blocklyDiv"></div>
-        <v-btn fab dark color="#00b248"
-          style="position: absolute; right: 116px; bottom: 136px; z-index: 999;"
-          @click="run">
-          <v-icon large>play_arrow</v-icon>
-        </v-btn>
-        <v-btn dark color="#00b248"
-          style="position: absolute; right: 100px; bottom: 88px; z-index: 999;"
-          @click="submit">
-          제출하기
-        </v-btn>
-        <v-btn dark color="#00b248"
-          style="; position: absolute; right: 100px; bottom: 40px; z-index: 999;"
-          @click="initCode">
-          코드초기화
-        </v-btn>
+      <div style="flex: 1; display: flex; flex-direction: column;">
+        <div class="blockly-area" ref="blocklyArea">
+          <div id="blocklyDiv" ref="blocklyDiv"></div>
+          <v-btn fab dark color="#00b248"
+            style="position: absolute; right: 116px; bottom: 136px; z-index: 999;"
+            @click="run">
+            <v-icon large>play_arrow</v-icon>
+          </v-btn>
+          <v-btn dark color="#00b248"
+            style="position: absolute; right: 100px; bottom: 88px; z-index: 999;"
+            @click="submit">
+            제출하기
+          </v-btn>
+          <v-btn dark color="#00b248"
+            style="; position: absolute; right: 100px; bottom: 40px; z-index: 999;"
+            @click="initCode">
+            코드초기화
+          </v-btn>
+        </div>
+        <div class="console-area">
+          <div class="console-title">실행 결과</div>
+          <div class="console-content">
+            <div v-for="(res, i) in alertResults" :key="'alert' + i">{{res}}</div>
+          </div>
+          
+        </div>
       </div>
+
+
+
     </div>
   </div>
 </template>

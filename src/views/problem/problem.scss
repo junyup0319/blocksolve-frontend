@@ -31,18 +31,54 @@
       &::-webkit-scrollbar { 
         display: none !important; // 윈도우 크롬 등
       }
+      .tab-item-title {
+        font-size: 24px;
+        color: #00b248;
+        font-weight: 600;
+        text-align: center;
+        margin: 12px 0;
+        &.sub {
+          font-size: 18px;
+        }
+      }
+      .tab-item-content {
+        background: rgba(0, 178, 72, 0.6);
+        border-radius: 12px;
+        min-width: 250px;
+        margin-bottom: 20px;
+      }
     }
   }
   .blockly-area {
     flex: 1;
     position: relative;
     padding-left: 5px;
+    // min-height: 500px;
     #blocklyDiv {
       position: absolute;
       min-width: calc(100% - 5px);
-      height: 100%;
+      // min-height: 500px;
       z-index: 100;
     }
     
+  }
+  .console-area {
+    height: 180px; border-top: dashed 2px rgba(156, 213, 159, 1); z-index: 100;
+    .console-title {
+      width: 120px; height: 32px; line-height: 32px; text-align: center; border-radius: 8px 8px 0 0;
+          background: #00b248; color: white;
+    }
+    .console-content {
+      width: 100%;
+      height: calc(100% - 32px);
+      overflow-y: auto;
+      background: rgba(156, 213, 159, 1);
+      color: white;
+      padding: 12px 24px;
+      -ms-overflow-style: none; // IE에서 스크롤바 감춤
+      &::-webkit-scrollbar { 
+        display: none !important; // 윈도우 크롬 등
+      }
+    }
   }
 }
