@@ -63,19 +63,34 @@
     
   }
   .console-area {
-    height: 180px;
+    height: 32px;    
     border-top: dashed 2px rgba(156, 213, 159, 1);
     z-index: 100;
-    .console-title {
-      width: 104px;
-      height: 32px;
-      line-height: 32px;
-      font-weight: 700;
-      text-align: center;
-      border-radius: 8px 8px 0 0;
-      background: rgb(204, 204, 204);
-      color: #777;
+    transition: .2s;
+    &[showConsoleWindow] {
+      height: 180px;
     }
+    .console-nav {
+      display: flex;
+      .console-title {
+        width: 104px;
+        height: 32px;
+        line-height: 32px;
+        font-weight: 700;
+        text-align: center;
+        border-radius: 8px 8px 0 0;
+        background: rgb(224, 224, 224);
+        color: #777;
+      }
+      .console-button {
+        .v-icon {
+          &[showConsoleWindow] {
+            transform: rotate(-180deg);
+          }
+        }
+      }
+    }
+    
     .console-content {
       width: 100%;
       height: calc(100% - 32px);

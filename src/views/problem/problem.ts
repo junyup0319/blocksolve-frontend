@@ -31,6 +31,7 @@ export default class Ide extends Vue {
   };
   private ui = {
     showTabItem: true,
+    showConsoleWindow: true,
   };
   private testXMLCode = '<xml><block type="text_print" id="sN?1S6lhQ+B5VJCpVZPR" x="50" y="90"><value name="TEXT"><block type="text" id="3)w9@)t+e|Gj@K=q17q]"><field name="TEXT">abc</field></block></value></block></xml>';
   private testXMLCodeNoID = '<xml><block type="text_print" x="30" y="90"><value name="TEXT"><block type="text"><field name="TEXT">abc</field></block></value></block></xml>';
@@ -104,6 +105,13 @@ export default class Ide extends Vue {
     this.ui.showTabItem = !this.ui.showTabItem;
     setTimeout(() => {
       Blockly.svgResize(this.workspace);
+    }, 200);
+  }
+  private toggleConsoleClick() {
+    this.ui.showConsoleWindow = !this.ui.showConsoleWindow;
+    setTimeout(() => {
+      this.onResize();
+      // Blockly.svgResize(this.workspace);
     }, 200);
   }
 

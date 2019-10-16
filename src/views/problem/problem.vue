@@ -8,7 +8,7 @@
         <v-btn class="tab-button" icon width="16px"
           style="position: absolute; right: 0px; top: 36%; height: 100px;
             background: rgba(156, 213, 159, 1); border-radius: 4px 0 0 4px; z-index: 100;"
-          @click="toggleTabClick"><v-icon class="icon" :showTabItem="ui.showTabItem">keyboard_arrow_right</v-icon>
+          @click="toggleTabClick"><v-icon :showTabItem="ui.showTabItem">keyboard_arrow_right</v-icon>
         </v-btn>
         <v-tabs vertical color="#00b248">
           <v-tab style="border-bottom: solid 1px rgba(0, 178, 72, 0.4);"><v-icon>description</v-icon></v-tab>
@@ -59,8 +59,18 @@
             코드초기화
           </v-btn>
         </div>
-        <div class="console-area">
-          <div class="console-title">실행 결과</div>
+        <div class="console-area" :showConsoleWindow="ui.showConsoleWindow">
+          <div class="console-nav">
+            <div class="console-title">실행 결과</div>
+            <v-spacer></v-spacer>
+            <v-btn class="console-button" icon height="20px" style="width: 100px;
+              background: rgba(156, 213, 159, 1); border-radius: 0 0 4px 4px; z-index: 100;"
+              @click="toggleConsoleClick">
+              <v-icon :showConsoleWindow="ui.showConsoleWindow">keyboard_arrow_up</v-icon>
+            </v-btn>
+            <v-spacer></v-spacer>
+          </div>
+          
           <div class="console-content" ref="consoleWindow">
             <div v-for="(res, i) in consoleResults" :key="'alert' + i">{{res}}</div>
           </div>
