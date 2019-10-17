@@ -6,6 +6,7 @@ import Dialog from '@/plugins/dialog';
 
 Vue.use(Loading);
 Vue.use(Dialog);
+
 @Component({})
 export default class App extends Vue {
   private tabItems = ['Foo', 'Bar', 'Fizz', 'Buzz'];
