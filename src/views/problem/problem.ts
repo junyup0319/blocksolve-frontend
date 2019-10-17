@@ -66,7 +66,7 @@ export default class Ide extends Vue {
   private pythonCode: string = '';
 
   private interpreter!: Interpreter;
-  private consoleResults: string[] = ['test1', 'test2'];
+  private consoleResults: string[] = [];
 
 
   private problem: Problem = {
@@ -90,9 +90,9 @@ export default class Ide extends Vue {
     try {
       await ProblemApi.saveSolution('1', this.$route.params.pid,
         Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)));
-      console.log('저장 성공!');
+      console.log('success auto save!');
     } catch (e) {
-      console.error('저장 실패!', e);
+      console.error('fail auto save!', e);
     }
   }
 
@@ -171,7 +171,7 @@ export default class Ide extends Vue {
     const consoleWrapper = (text: string) => {
       setTimeout(() => {
         this.$refs.consoleWindow.scrollTop = this.$refs.consoleWindow.scrollHeight;
-      }, 100);
+      }, 50);
       return this.consoleResults.push(arguments.length ? text : '');
       // return alert(arguments.length ? text : '');
     };
@@ -186,7 +186,6 @@ export default class Ide extends Vue {
         interpreter.createNativeFunction(wrapper));
   }
   private run() {
-    console.log(this.$refs.consoleWindow.scrollHeight);
     this.interpreter = new Interpreter(this.javaScriptCode, this.initInterpreterApi);
     this.interpreter.run();
   }
