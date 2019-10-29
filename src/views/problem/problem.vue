@@ -35,7 +35,7 @@
           <v-tab-item class="tab-item">
             <div class="tab-item-title">code</div>
             <v-card flat style="background: rgba(0, 178, 72, 0.6); border-radius: 12px; min-width: 250px;">
-              <v-card-text style="color: white; font-size: 16px; white-space: pre;">{{pythonCode}}</v-card-text>
+              <v-card-text style="color: white; font-size: 16px; white-space: pre;">{{javaScriptCode}}</v-card-text>
             </v-card>
           </v-tab-item>
         </v-tabs>
@@ -62,6 +62,7 @@
         <div class="console-area" :showConsoleWindow="ui.showConsoleWindow">
           <div class="console-nav">
             <div class="console-title" @click="toggleConsoleClick">실행 결과</div>
+            
             <v-spacer></v-spacer>
             <v-btn class="console-button" icon height="16px" style="width: 100px;
               background: rgba(156, 213, 159, 1); border-radius: 0 0 4px 4px; z-index: 100;"
@@ -69,6 +70,9 @@
               <v-icon :showConsoleWindow="ui.showConsoleWindow" style="width: 16px; height: 16px;">keyboard_arrow_up</v-icon>
             </v-btn>
             <v-spacer></v-spacer>
+            <v-btn small elevation="0" width="80"
+              style="margin: 2px 10px 0 0; color: #444;" color="#eee"
+              @click="deleteConsole">삭제</v-btn>
           </div>
           
           <div class="console-content" ref="consoleWindow">

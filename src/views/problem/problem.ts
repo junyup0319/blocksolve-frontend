@@ -37,9 +37,11 @@ export default class Ide extends Vue {
   private testXMLCodeNoID = '<xml><block type="text_print" x="30" y="90"><value name="TEXT"><block type="text"><field name="TEXT">abc</field></block></value></block></xml>';
 
   private workspace = new Blockly.Workspace();
+
   private toolboxXML =
     `<xml id="toolbox" style="display: none;">
       <category name="Logic" colour="210">
+      <block type="string_length"></block>
         <block type="controls_if"></block>
         <block type="logic_compare"></block>
         <block type="logic_operation"></block>
@@ -114,6 +116,9 @@ export default class Ide extends Vue {
       // Blockly.svgResize(this.workspace);
     }, 200);
   }
+  private deleteConsole() {
+    this.consoleResults = [];
+  }
 
   private onResize() {
     this.$refs.blocklyDiv.style.left = 0 + 'px';
@@ -125,6 +130,17 @@ export default class Ide extends Vue {
   }
 
   private initBlockly() {
+    Blockly.Blocks.string_length = {
+      init() {
+        this.appendValueInput('VALUE')
+            .setCheck('String')
+            .appendField('length of');
+        this.setOutput(true, 'Number');
+        this.setColour(160);
+        this.setTooltip('Returns number of letters in the provided text.');
+        this.setHelpUrl('http://www.w3schools.com/jsref/jsref_length_string.asp');
+      },
+    };
     Blockly.setLocale(Korean);
     this.workspace = Blockly.inject('blocklyDiv', {
       toolbox: this.toolboxXML,
@@ -167,7 +183,7 @@ export default class Ide extends Vue {
     // interpreter.setProperty(scope, 'highlightBlock',
     //     interpreter.createNativeFunction(wrapper));
 
-    // Add an API function for the alert() block.
+    // Add an API function for the alert() block.f
     const consoleWrapper = (text: string) => {
       setTimeout(() => {
         this.$refs.consoleWindow.scrollTop = this.$refs.consoleWindow.scrollHeight;
