@@ -11,12 +11,10 @@
         </v-btn>
       </div>
       <div class="content-area">
-        <div class="result" v-if="ui.isCorrect" style="color: #00b248;">" 맞았습니다 "</div>
-        <div class="result" v-else style="color: #ff3232;">" 틀렸습니다 "</div>
-        <div class="content">
-          <div class="data" correct>test 1 = 1</div>
-          <div class="data" correct>test 1 = 1</div>
-          <div class="data" v-for="i in 20" :key="i">test 1 = 1</div>
+        <div class="result-title" v-if="ui.isCorrect" style="color: #00b248;">" 맞았습니다 "</div>
+        <div class="result-title" v-else style="color: #ff3232;">" 틀렸습니다 "</div>
+        <div class="results">
+          <div class="result" v-for="(res, i) in results" :key="'key' + i" :correct="res.correct">{{res.text}}</div>
         </div>
       </div>
       <div class="button-area">
@@ -69,18 +67,19 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      .result {
+      .result-title {
         height: 10%;
         text-align: center;
         font-size: 24px;
       }
-      .content {
+      .results {
         background: #f6f6f6;
         max-height: 90%;
+        height: 90%;
         overflow-y: auto;
         border: solid 1px #ccc;
         padding: 8px 16px;
-        .data {
+        .result {
           font-weight: 600;
           color: #ff3232;
           text-decoration: line-through;

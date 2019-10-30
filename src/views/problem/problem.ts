@@ -209,6 +209,14 @@ export default class Ide extends Vue {
     // TODO
     // 아직 제출 api 없음
     console.log(Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)));
+    const results: Array<{text: string, correct: boolean}> = [];
+    for (let i = 0; i < 20; i++) {
+      results.push({
+        text: 'test' + i, correct: i % 2 === 0 ? true : false,
+      });
+    }
+
+    this.$resultDialog.on(results);
   }
 
   private initCode() {
