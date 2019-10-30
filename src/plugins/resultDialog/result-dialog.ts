@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-
+import VUEX from 'vuex';
+import Store from '@/store';
 declare module 'vue/types/vue' {
   interface ResultDialog {
     on: () => {};
@@ -22,4 +23,5 @@ export default class ResultDialog extends Vue {
   public off() {
     this.ui.show = false;
   }
+
 }

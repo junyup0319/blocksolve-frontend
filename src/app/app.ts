@@ -11,10 +11,6 @@ Vue.use(ResultDialog);
 
 @Component({})
 export default class App extends Vue {
-  private tabItems = ['Foo', 'Bar', 'Fizz', 'Buzz'];
-  private categoryItems = ['카테고리1', '카테고리2'];
-  private active = false;
-  private name: string = 'app';
   private ui = {
     showNav: false,
   };
