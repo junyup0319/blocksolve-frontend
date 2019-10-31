@@ -248,6 +248,7 @@ export default class Ide extends Vue {
       console.log('problem: ', this.problem);
     } catch (e) {
       alert('잘못된 접근입니다.');
+      return;
       // this.$router.go(-1);
     }
     this.initBlockly();
@@ -259,7 +260,7 @@ export default class Ide extends Vue {
       // 저장된 solution이 있는 경우
       try {
         await this.$dialog.on('title', '저장된 블록이 있습니다.\n저장된 블록을 가져오시겠습니까?', '가져오기', '취소');
-        // 가져오기 선택
+        // 가져오
         // TODO
         // loading on & off
         console.log('solution', solution);
