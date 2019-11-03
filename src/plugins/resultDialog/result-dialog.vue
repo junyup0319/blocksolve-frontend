@@ -19,7 +19,7 @@
       </div>
       <div class="button-area">
         <v-spacer></v-spacer>
-        <v-btn dark color="#00b248" width="80" @click="off">확인</v-btn>
+        <v-btn dark color="rgb(65, 165, 211)" width="80" @click="off">확인</v-btn>
       </div>
     </div>
   </div>
@@ -53,7 +53,7 @@
       align-items: center;
       padding-left: 16px;
       padding-right: 4px;
-      background: #00b248;
+      background: rgb(65, 165, 211);
       border-radius: 8px 8px 0 0;
       .title {
         font-size: 20px;
@@ -85,7 +85,7 @@
           text-decoration: line-through;
           margin-bottom: 4px;
           &[correct] {
-            color: #00b248;
+            color: rgb(65, 165, 211);
             text-decoration: none;
           }
         }

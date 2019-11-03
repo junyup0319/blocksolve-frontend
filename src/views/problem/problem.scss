@@ -3,7 +3,7 @@
 
 .ide-area {
   display: flex;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 134px);
   .tab-area {
     width: 90px;
     background: white;
@@ -32,14 +32,14 @@
         display: none !important; // 윈도우 크롬 등
       }
       .tab-item-title {
-        font-size: 24px;
-        color: #888;
+        font-size: 20px;
+        color: #777;
         font-weight: 600;
         text-align: center;
         margin: 12px 0;
-        &.sub {
-          font-size: 18px;
-        }
+        // &.sub {
+        //   font-size: 18px;
+        // }
       }
       .tab-item-content {
         background: rgb(65, 165, 211);

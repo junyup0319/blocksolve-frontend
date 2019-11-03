@@ -5,7 +5,7 @@
   <div>
     <div v-if="$store.getters.user === null" style="width: 100%; height: 686px; background: rgba(0,0,0,0,1);
       display: flex; align-items: center; justify-content: center;">
-      <v-btn @click="login" dark color="#00b248">로그인 하기</v-btn>
+      <v-btn @click="login" dark color="rgb(65, 165, 211)">로그인 하기</v-btn>
     </div>
     <div v-else class="content-zone">
       <div style="margin: 60px 80px;">

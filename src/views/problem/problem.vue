@@ -18,6 +18,7 @@
             <v-card flat class="tab-item-content">
               <v-card-text style="color: white; font-size: 16px;" v-html="problem.content"></v-card-text>
             </v-card>
+            <v-divider style="margin: 40px 0;"></v-divider>
             <div class="tab-item-title sub">입력 예시</div>
             <v-card flat class="tab-item-content">
               <v-card-text style="color: white; font-size: 16px;" v-html="problem.inputDetail"></v-card-text>
