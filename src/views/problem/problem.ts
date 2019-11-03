@@ -160,7 +160,7 @@ export default class Ide extends Vue {
       },
       trashcan: true,
     });
-    this.workspace.toolbox_.HtmlDiv.style.background = 'rgba(156, 213, 159, 1)';
+    this.workspace.toolbox_.HtmlDiv.style.background = 'rgba(65, 165, 211, 0.8)';
     this.workspace.toolbox_.HtmlDiv.style.color = '#fff';
 
     window.addEventListener('resize', this.onResize, false);

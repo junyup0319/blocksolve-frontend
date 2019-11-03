@@ -7,12 +7,12 @@
       <div class="tab-area" :showTabItem="ui.showTabItem">
         <v-btn class="tab-button" icon width="16px"
           style="position: absolute; right: 0px; top: 36%; height: 100px;
-            background: rgba(156, 213, 159, 1); border-radius: 4px 0 0 4px; z-index: 100;"
+            background: #ddd; border-radius: 4px 0 0 4px; z-index: 100;"
           @click="toggleTabClick"><v-icon :showTabItem="ui.showTabItem" style="width: 16px; height: 16px;">keyboard_arrow_right</v-icon>
         </v-btn>
-        <v-tabs vertical color="#00b248">
-          <v-tab style="border-bottom: solid 1px rgba(0, 178, 72, 0.4);"><v-icon>description</v-icon></v-tab>
-          <v-tab style="border-bottom: solid 1px rgba(0, 178, 72, 0.4);"><v-icon>code</v-icon></v-tab>
+        <v-tabs vertical color="rgb(65, 165, 211)">
+          <v-tab style="border-bottom: solid 1px rgb(65, 165, 211, 0.7);"><v-icon>description</v-icon></v-tab>
+          <v-tab style="border-bottom: solid 1px rgb(65, 165, 211, 0.7);"><v-icon>code</v-icon></v-tab>
           <v-tab-item class="tab-item">
             <div class="tab-item-title">문제</div>
             <v-card flat class="tab-item-content">
@@ -34,7 +34,7 @@
           </v-tab-item>
           <v-tab-item class="tab-item">
             <div class="tab-item-title">code</div>
-            <v-card flat style="background: rgba(0, 178, 72, 0.6); border-radius: 12px; min-width: 250px;">
+            <v-card flat class="tab-item-content">
               <v-card-text style="color: white; font-size: 16px; white-space: pre;">{{javaScriptCode}}</v-card-text>
             </v-card>
           </v-tab-item>
@@ -43,17 +43,17 @@
       <div style="flex: 1; display: flex; flex-direction: column;">
         <div class="blockly-area" ref="blocklyArea">
           <div id="blocklyDiv" ref="blocklyDiv"></div>
-          <v-btn fab dark color="#00b248"
+          <v-btn fab dark color="rgb(65, 165, 211)"
             style="position: absolute; right: 116px; bottom: 136px; z-index: 999;"
             @click="run">
             <v-icon large>play_arrow</v-icon>
           </v-btn>
-          <v-btn dark color="#00b248"
+          <v-btn dark color="rgb(65, 165, 211)"
             style="position: absolute; right: 100px; bottom: 88px; z-index: 999;"
             @click="submit">
             제출하기
           </v-btn>
-          <v-btn dark color="#00b248"
+          <v-btn dark color="rgb(65, 165, 211)"
             style="position: absolute; right: 100px; bottom: 40px; z-index: 999;"
             @click="initCode">
             코드초기화
@@ -65,7 +65,7 @@
             
             <v-spacer></v-spacer>
             <v-btn class="console-button" icon height="16px" style="width: 100px;
-              background: rgba(156, 213, 159, 1); border-radius: 0 0 4px 4px; z-index: 100;"
+              background: #ddd; border-radius: 0 0 4px 4px; z-index: 100;"
               @click="toggleConsoleClick">
               <v-icon :showConsoleWindow="ui.showConsoleWindow" style="width: 16px; height: 16px;">keyboard_arrow_up</v-icon>
             </v-btn>

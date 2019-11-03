@@ -28,7 +28,7 @@
             v-for="(problem, i) in problems" :key="'problem' + i"
             @click="clickItem(problem.pid)">
           <div class="start-item">{{problem.pid}}</div>
-          <div class="options-2" style="padding-left: 4px;">{{problem.title}}</div>
+          <div class="options-2 problem-title" style="padding-left: 4px;">{{problem.title}}</div>
           <div class="options-1" style="padding-left: 4px;">{{problem.category}}</div>
           <div class="options-1" style="padding-left: 4px;">{{problem.creator}}</div>
           <div class="options-1" style="padding-left: 4px;">{{problem.numSub}}</div>

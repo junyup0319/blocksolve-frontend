@@ -33,7 +33,7 @@
       }
       .tab-item-title {
         font-size: 24px;
-        color: #00b248;
+        color: #888;
         font-weight: 600;
         text-align: center;
         margin: 12px 0;
@@ -42,7 +42,7 @@
         }
       }
       .tab-item-content {
-        background: rgba(0, 178, 72, 0.6);
+        background: rgb(65, 165, 211);
         border-radius: 12px;
         min-width: 250px;
         margin-bottom: 20px;
@@ -64,7 +64,7 @@
   }
   .console-area {
     height: 32px;    
-    border-top: dashed 2px rgba(156, 213, 159, 1);
+    border-top: dashed 2px rgb(65, 165, 211);
     z-index: 100;
     transition: .2s;
     &[showConsoleWindow] {

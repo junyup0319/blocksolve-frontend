@@ -37,10 +37,15 @@
       &:hover {
         cursor: pointer;
         font-weight: 500;
-        .start-item {
-          color: $main-color;
-          text-decoration: underline $main-color;
+        .problem-title {
+          font-weight: 600;
+          color: rgb(65, 165, 211);
+          text-decoration: underline rgb(65, 165, 211);  
         }
+        // .start-item {
+        //   color: rgb(65, 165, 211);
+        //   text-decoration: underline rgb(65, 165, 211);
+        // }
       }
     }
 
