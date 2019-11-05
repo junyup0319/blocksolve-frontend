@@ -23,3 +23,14 @@
     }
   }
 }
+.nav-title {
+  flex: 1;
+  font-weight: 600;
+  font-size: 40px;
+  color: rgb(65, 165, 211);
+  letter-spacing: 4px;
+  margin: 16px auto 10px auto;
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -1,10 +1,7 @@
 <template>
   <v-app>
     <div class="nav-wrapper" style="display: flex; flex-direction: column;">
-      <div style="flex: 1; font-weight: 600;
-    font-size: 40px;
-    color: rgb(65, 165, 211);
-    letter-spacing: 4px; margin: 16px auto 10px auto;">BLOCKSOLVE</div>
+      <div class="nav-title" @click="$router.push('/')">BLOCKSOLVE</div>
       <div class="content-zone" style="display: flex;">
         <v-tabs color="rgb(65, 165, 211)" right>
           <v-tab to="/">메인 페이지</v-tab>
