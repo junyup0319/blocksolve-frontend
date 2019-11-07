@@ -43,6 +43,19 @@ export class ProblemApi {
       });
     }
   }
+  public async submit(pid: string, uid: string, xml: string, source: string): Promise<{msg: string, result: boolean}> {
+    const res = await axios.post(`${host}/submit`, {
+      pid: Number(pid),
+      uid: 1,
+      xml,
+      source,
+    });
+    return res.data;
+  }
+  // public async getStatus(): Promise<> {
+  //   const res = await axios.get(`${host}/submit`);
+  //   return res.data.data;
+  // }
 }
 
 const problemApi = new ProblemApi();

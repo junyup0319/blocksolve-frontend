@@ -210,17 +210,30 @@ export default class Ide extends Vue {
     // 아직 제출 api 없음
     console.log(Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)));
 
-    // test code
-    const results: Array<{text: string, correct: boolean}> = [];
-    results.push({text: 'false?', correct: Math.random() > 0.5 ? true : false});
-    for (let i = 0; i < 20; i++) {
-      results.push({
-        text: 'test' + i, correct: true,
-      });
+    try {
+      const res = await ProblemApi.submit(this.problem.pid, '1',
+        Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)),
+        this.pythonCode);
+
+      console.log(res);
+      // TODO results를 실제 데이터로 바꾸기 => res에서 데이터 넘어와야함
+      // test code
+      const results: Array<{text: string, correct: boolean}> = [];
+      if (res.result) {
+        results.push({text: 'true!!', correct: true});
+      } else {
+        results.push({text: 'false!!', correct: false});
+      }
+      for (let i = 0; i < 20; i++) {
+        results.push({
+          text: 'test' + i, correct: true,
+        });
+      }
+      this.$resultDialog.on(results);
+
+    } catch (e) {
+      console.error(e);
     }
-
-
-    this.$resultDialog.on(results);
   }
 
   private initCode() {
