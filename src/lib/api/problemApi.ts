@@ -52,10 +52,21 @@ export class ProblemApi {
     });
     return res.data;
   }
-  // public async getStatus(): Promise<> {
-  //   const res = await axios.get(`${host}/submit`);
-  //   return res.data.data;
-  // }
+  public async getStatus(uid: string):
+    Promise<{
+      data: [{
+        category: string,
+        creator: string,
+        pid: number,
+        sid: number,
+        source: string,
+        subXML: string,
+        testresult: Array<{result: boolean, tid: number}>,
+      }],
+      result: boolean}> {
+    const res = await axios.get(`${host}/submit/${1}`);
+    return res.data.data;
+  }
 }
 
 const problemApi = new ProblemApi();
