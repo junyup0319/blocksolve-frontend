@@ -209,7 +209,7 @@ export default class Ide extends Vue {
     // TODO
     // 아직 제출 api 없음
     console.log(Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)));
-
+    this.$loadingDefault.on();
     try {
       const res = await ProblemApi.submit(this.problem.pid, '1',
         Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)),
@@ -234,6 +234,7 @@ export default class Ide extends Vue {
     } catch (e) {
       console.error(e);
     }
+    this.$loadingDefault.off();
   }
 
   private initCode() {
