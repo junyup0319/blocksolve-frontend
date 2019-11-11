@@ -53,8 +53,7 @@ export class ProblemApi {
     return res.data;
   }
   public async getStatus(uid: string):
-    Promise<{
-      data: [{
+    Promise<Array<{
         category: string,
         creator: string,
         pid: number,
@@ -62,9 +61,10 @@ export class ProblemApi {
         source: string,
         subXML: string,
         testresult: Array<{result: boolean, tid: number}>,
-      }],
-      result: boolean}> {
-    const res = await axios.get(`${host}/submit/${1}`);
+        title: string,
+        uid: number,
+      }>> {
+    const res = await axios.get(`${host}/status/${1}`);
     return res.data.data;
   }
 }

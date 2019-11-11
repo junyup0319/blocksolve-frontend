@@ -40,12 +40,12 @@
             <div class="options-1">정답 비율</div>
             <div class="end-item">설명</div>
           </div>
-          <div class="table-item items" v-for="(item, i) in ui.itemDetails" :key="i"
-            :open="item">
+          <div class="table-item items" v-for="(item, i) in userStats" :key="i"
+            :open="false">
             <div class="content" style="display: flex;"  @click.stop="itemClick(i)">
-              <div class="start-item">title</div>
-              <div class="options-1" style="padding-left: 4px;">.category</div>
-              <div class="options-1" style="padding-left: 4px;">creator</div>
+              <div class="start-item">{{item.title}}</div>
+              <div class="options-1" style="padding-left: 4px;">{{item.category}}</div>
+              <div class="options-1" style="padding-left: 4px;">{{item.creator}}</div>
               <div class="options-1" style="padding-left: 4px;">submitCount</div>
               <div class="options-1" style="padding-left: 4px;">correctRate</div>
               <div class="end-item"  style="padding-left: 4px;">contents</div>
