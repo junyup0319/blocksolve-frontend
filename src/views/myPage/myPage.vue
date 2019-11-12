@@ -25,7 +25,7 @@
               </div>
               <div class="content">
                 <div class="desc">전체 문제</div>
-                <div class="count">10</div>
+                <div class="count">{{problemCount}}</div>
               </div>
             </div>
           </div>
@@ -33,31 +33,31 @@
         <div class="table-descriptor">나의 풀이정보</div>
         <div class="table-area">
           <div class="table-item header">
-            <div class="start-item">제목</div>
+            <div class="start-item">번호</div>
+            <div class="options-2">제목</div>
             <div class="options-1">카테고리</div>
             <div class="options-1">만든이</div>
-            <div class="options-1">제출</div>
-            <div class="options-1">정답 비율</div>
-            <div class="end-item">설명</div>
-            <div style="width: 32px;"></div>
+            <div class="options-1">제출 시간</div>
+            <div class="end-item">제출 결과</div>
+            <div style="width: 44px;"></div>
           </div>
           <div class="table-item items" v-for="(item, i) in status" :key="i"
-            :open="item.open">
+            :open="item.open" :last="i===status.length-1">
             <div class="content" style="display: flex;"  @click.stop="itemClick(i)">
-              <div class="start-item">{{item.title}}</div>
+              <div class="start-item">{{item.pid}}</div>
+              <div class="options-2">{{item.title}}</div>
               <div class="options-1">{{item.category}}</div>
               <div class="options-1">{{item.creator}}</div>
-              <div class="options-1">submitCount</div>
-              <div class="options-1">correctRate</div>
-              <div class="end-item">contents</div>
-              <v-icon class="icon" style="margin-right: 8px;">arrow_drop_down</v-icon>
+              <div class="options-1">abc</div>
+              <div v-if="testResult[i]" class="end-item testResult" :isCorrect="testResult[i]">성공</div>
+              <div v-else class="end-item testResult" :isCorrect="testResult[i]">실패</div>
+              <v-icon class="icon" style="margin-right: 20px;">arrow_drop_down</v-icon>
             </div>
             <div class="details" v-for="(test, i) in item.testresult" :key="'testcase'+i" style="border-top: solid 1px #ccc; padding-left: 20px;">
               <div class="detail-item">
                 <div class="detail-content">test case {{i+1}}</div>
                 <div class="detail-content">{{test.result}}</div>
-                <div class="detail-content-end" style="">test case1이 맞았습니다!</div>
-                
+                <div class="detail-content-end">test case1이 맞았습니다!</div>
               </div>
             </div>
           </div>
