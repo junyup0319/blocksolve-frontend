@@ -50,12 +50,12 @@
             <v-icon large>play_arrow</v-icon>
           </v-btn>
           <v-btn dark color="rgb(65, 165, 211)"
-            style="position: absolute; right: 100px; bottom: 88px; z-index: 999;"
+            style="position: absolute; right: 100px; bottom: 88px; z-index: 999; width: 92px;"
             @click="submit">
             제출하기
           </v-btn>
           <v-btn dark color="rgb(65, 165, 211)"
-            style="position: absolute; right: 100px; bottom: 40px; z-index: 999;"
+            style="position: absolute; right: 100px; bottom: 40px; z-index: 999; width: 92px;"
             @click="initCode">
             코드초기화
           </v-btn>

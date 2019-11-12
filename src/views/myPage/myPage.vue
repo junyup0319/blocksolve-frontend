@@ -39,22 +39,23 @@
             <div class="options-1">제출</div>
             <div class="options-1">정답 비율</div>
             <div class="end-item">설명</div>
+            <div style="width: 32px;"></div>
           </div>
-          <div class="table-item items" v-for="(item, i) in userStats" :key="i"
-            :open="false">
+          <div class="table-item items" v-for="(item, i) in status" :key="i"
+            :open="item.open">
             <div class="content" style="display: flex;"  @click.stop="itemClick(i)">
               <div class="start-item">{{item.title}}</div>
-              <div class="options-1" style="padding-left: 4px;">{{item.category}}</div>
-              <div class="options-1" style="padding-left: 4px;">{{item.creator}}</div>
-              <div class="options-1" style="padding-left: 4px;">submitCount</div>
-              <div class="options-1" style="padding-left: 4px;">correctRate</div>
-              <div class="end-item"  style="padding-left: 4px;">contents</div>
+              <div class="options-1">{{item.category}}</div>
+              <div class="options-1">{{item.creator}}</div>
+              <div class="options-1">submitCount</div>
+              <div class="options-1">correctRate</div>
+              <div class="end-item">contents</div>
               <v-icon class="icon" style="margin-right: 8px;">arrow_drop_down</v-icon>
             </div>
-            <div class="details" v-for="(item, i) in 3" :key="i+'item'" style="border-top: solid 1px #ccc; padding-left: 20px;">
+            <div class="details" v-for="(test, i) in item.testresult" :key="'testcase'+i" style="border-top: solid 1px #ccc; padding-left: 20px;">
               <div class="detail-item">
-                <div class="detail-content">test case1</div>
-                <div class="detail-content">2019-10-1 20:00</div>
+                <div class="detail-content">test case {{i+1}}</div>
+                <div class="detail-content">{{test.result}}</div>
                 <div class="detail-content-end" style="">test case1이 맞았습니다!</div>
                 
               </div>

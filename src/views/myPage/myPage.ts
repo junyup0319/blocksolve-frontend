@@ -11,6 +11,9 @@ export default class MyPage extends Vue {
   private ui = {
     itemDetails: [false, false, false],
   };
+  // TODO
+  // userStatus 에 open을 두어야 할 듯!
+  // vue 파일에서 style 수정 및 데이터 적용!
   private userStatus: Array<{
     category: string,
     creator: string,
@@ -21,21 +24,24 @@ export default class MyPage extends Vue {
     title: string,
     uid: number,
     testresult: Array<{result: boolean, tid: number}>,
+    open: false,
   }> = [];
 
   get itemDetail() {
     return this.ui.itemDetails;
   }
 
-  get userStats() {
+  get status() {
     return this.userStatus;
   }
 
   private itemClick(index: number) {
-    const a = _.clone(this.ui.itemDetails);
-    a[index] = !a[index];
-    // this.ui.itemDetails[index] = a;
-    Vue.set(this.ui, 'itemDetails', a);
+    Vue.set(this.userStatus[index], 'open', !this.userStatus[index].open);
+
+    // const a = _.clone(this.ui.itemDetails);
+    // a[index] = !a[index];
+    // // this.ui.itemDetails[index] = a;
+    // Vue.set(this.ui, 'itemDetails', a);
   }
   private login() {
     auth.signIn();
@@ -43,9 +49,12 @@ export default class MyPage extends Vue {
   private async mounted() {
     this.$loadingDefault.on();
     try {
-    this.userStatus = await ProblemApi.getStatus('1');
-    console.warn(this.userStatus);
-    this.$loadingDefault.off();
+      const res = await ProblemApi.getStatus('1');
+      _.forEach(res, (s) => Object.assign(s, {open: false}));
+      console.warn(res);
+      // @ts-ignore
+      this.userStatus = res;
+      this.$loadingDefault.off();
     } catch (e) {
 
       alert('server error');
