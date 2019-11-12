@@ -21,7 +21,7 @@
             <div class="solve-info-area">
               <div class="content">
                 <div class="desc">내가 푼 문제</div>
-                <div class="count">1</div>
+                <div class="count">{{solveCount}}</div>
               </div>
               <div class="content">
                 <div class="desc">전체 문제</div>
@@ -39,7 +39,7 @@
             <div class="options-1">만든이</div>
             <div class="options-1">제출 시간</div>
             <div class="end-item">제출 결과</div>
-            <div style="width: 44px;"></div>
+            <div style="width: 48px;"></div>
           </div>
           <div class="table-item items" v-for="(item, i) in status" :key="i"
             :open="item.open" :last="i===status.length-1">
@@ -48,10 +48,10 @@
               <div class="options-2">{{item.title}}</div>
               <div class="options-1">{{item.category}}</div>
               <div class="options-1">{{item.creator}}</div>
-              <div class="options-1">abc</div>
+              <div class="options-1">{{solutionDate[i]}}</div>
               <div v-if="testResult[i]" class="end-item testResult" :isCorrect="testResult[i]">성공</div>
               <div v-else class="end-item testResult" :isCorrect="testResult[i]">실패</div>
-              <v-icon class="icon" style="margin-right: 20px;">arrow_drop_down</v-icon>
+              <v-icon class="icon" style="margin: 0 12px;">arrow_drop_down</v-icon>
             </div>
             <div class="details" v-for="(test, i) in item.testresult" :key="'testcase'+i" style="border-top: solid 1px #ccc; padding-left: 20px;">
               <div class="detail-item">

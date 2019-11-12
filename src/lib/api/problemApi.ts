@@ -19,14 +19,14 @@ export class ProblemApi {
     return res.data.data;
   }
   public async getSavedSolution(uid: string, pid: string): Promise<SolutionForm> {
-    const res = await axios.get(`${host}/save?uid=${1}&pid=${Number(pid)}`);
-    if (res.data.result === 200) {
-      return res.data.data;
-    } else {
-      return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
+      const res = await axios.get(`${host}/save?uid=${1}&pid=${Number(pid)}`);
+      if (res.data.result === 200) {
+        return resolve(res.data.data);
+      } else {
         reject(new Error());
-      });
-    }
+      }
+    });
   }
   public async saveSolution(uid: string, pid: string, savedXML: string): Promise<{msg: string, result: boolean}> {
     const res = await axios.post(`${host}/save`, {

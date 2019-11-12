@@ -273,22 +273,18 @@ export default class Ide extends Vue {
       const solution = await ProblemApi.getSavedSolution('1', this.problem.pid);
       // 저장된 solution이 있는 경우
       try {
+        this.$loadingDefault.off();
         await this.$dialog.on('title', '저장된 블록이 있습니다.\n저장된 블록을 가져오시겠습니까?', '가져오기', '취소');
-        // 가져오
-        // TODO
-        // loading on & off
         console.log('solution', solution);
         const dom = Blockly.Xml.textToDom(solution.savedXML);
-        console.log('savedXML:', dom);
         Blockly.Xml.clearWorkspaceAndLoadFromXml(dom, this.workspace);
       } catch (e) {
-
         this.initCode();
       }
     } catch (e) {
       // 저장된 solution이 없는 경우
       // 그냥 진행
-      console.log('저장된 solution이 없음');
+      console.log('저장된 solution 없음');
     }
 
     this.$loadingDefault.off();
