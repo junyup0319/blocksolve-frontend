@@ -48,7 +48,7 @@
               <div class="options-2">{{item.title}}</div>
               <div class="options-1">{{item.category}}</div>
               <div class="options-1">{{item.creator}}</div>
-              <div class="options-1">{{solutionDate[i]}}</div>
+              <div class="options-1">api에 시간 데이터 없음</div>
               <div v-if="testResult[i]" class="end-item testResult" :isCorrect="testResult[i]">성공</div>
               <div v-else class="end-item testResult" :isCorrect="testResult[i]">실패</div>
               <v-icon class="icon" style="margin: 0 12px;">arrow_drop_down</v-icon>
