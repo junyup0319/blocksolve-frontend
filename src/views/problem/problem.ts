@@ -206,8 +206,6 @@ export default class Ide extends Vue {
     this.interpreter.run();
   }
   private async submit() {
-    // TODO
-    // 아직 제출 api 없음
     console.log(Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)));
     this.$loadingDefault.on('0.1');
     try {
@@ -216,7 +214,10 @@ export default class Ide extends Vue {
         this.pythonCode);
 
       console.log(res);
-      // TODO results를 실제 데이터로 바꾸기 => res에서 데이터 넘어와야함
+      // TODO
+      // results를 실제 데이터로 바꾸기
+      //  => res에서 테스트 케이스 별로 데이터가 넘어와야함
+      //  => 데이터에 맞게 dialog 바꾸기
       // test code
       const results: Array<{text: string, correct: boolean}> = [];
       if (res.result) {
