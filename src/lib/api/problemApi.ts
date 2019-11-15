@@ -7,12 +7,21 @@ import {Problem as ProblemForm, Solution as SolutionForm} from '../form';
 
 export class ProblemApi {
   public async getProblems(): Promise<ProblemForm[]> {
-    const res = await axios.get(`${host}/problems`);
-    return res.data.data;
+    const ele = await fetch('/data/problem.json');
+    const problems = JSON.parse(await ele.text()).data;
+    return problems;
+
+    // const res = await axios.get(`${host}/problems`);
+    // // console.log(res);
+    // return res.data.data;
   }
   public async getProblem(pid: string): Promise<ProblemForm> {
-    const res = await axios.get(`${host}/problems/${pid}`);
-    return res.data.data;
+    const ele = await fetch('/data/problem.json');
+    const problems = JSON.parse(await ele.text()).data;
+    return _.filter(problems, (d) => d.pid === Number(pid))[0];
+
+    // const res = await axios.get(`${host}/problems/${pid}`);
+    // return res.data.data;
   }
   public async getProblemsByCategory(category: string): Promise<ProblemForm[]> {
     const res = await axios.get(`${host}/problems?category=${category}`);
@@ -29,6 +38,7 @@ export class ProblemApi {
     });
   }
   public async saveSolution(uid: string, pid: string, savedXML: string): Promise<{msg: string, result: boolean}> {
+    // lastSolution에 있으면 update 없으면 create
     const res = await axios.post(`${host}/save`, {
       pid: Number(pid),
       uid: 1,
@@ -44,12 +54,20 @@ export class ProblemApi {
     }
   }
   public async submit(pid: string, uid: string, xml: string, source: string): Promise<{msg: string, result: boolean}> {
+    // sumbit.json에 pid, uid 가 겹치는게
+    // 없으면 crate, 있으면 update 한 뒤에
+    // 결과를 임의로 만들어서 저장해야함
+
+    // 그리고 제출하면 lastSolution도 update 해줘야함
+      // saveSolution() 으로 처리
+
     const res = await axios.post(`${host}/submit`, {
       pid: Number(pid),
       uid: 1,
       xml,
       source,
     });
+    console.log(res.data);
     return res.data;
   }
   public async getStatus(uid: string):
@@ -64,6 +82,7 @@ export class ProblemApi {
         title: string,
         uid: number,
       }>> {
+    // uid로 submit.json에 있는걸 다 가져온다
     const res = await axios.get(`${host}/status/${1}`);
     return res.data.data;
   }

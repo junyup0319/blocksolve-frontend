@@ -17,7 +17,7 @@ export default class ProblemList extends Vue {
     this.$loadingDefault.on();
     try {
       this.problems = await ProblemApi.getProblems();
-      console.log(this.problems);
+      console.log('problems', this.problems);
     } catch (e) {
       alert('server error');
       this.$router.go(-1);
