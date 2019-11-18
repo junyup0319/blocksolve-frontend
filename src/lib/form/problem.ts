@@ -5,7 +5,7 @@ export interface Problem {
   category: string;
   creator: string;
   createdAt: number;
-  numSub: number;
+  submitNumber: number;
   correctRate: number;
   inputDetail: string;
   outputDetail: string;
@@ -18,4 +18,14 @@ export interface Solution {
   pid: string;
   savedAt: number;
   savedXML: string;
+}
+
+export interface Submit {
+  uid: string;
+  pid: string;
+  xml: string;
+  source: string;
+  submitAt: number;
+  result: boolean;
+  testCase: Array<{input: string, expectOutput: string, output: string, result: boolean}>;
 }

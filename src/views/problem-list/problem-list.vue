@@ -25,7 +25,7 @@
           <div class="end-item">설명</div>
         </div>
         <div class="table-item items"
-            v-for="(problem, i) in problems" :key="'problem' + i"
+            v-for="(problem, i) in api.problems" :key="'problem' + i"
             @click="clickItem(problem.pid)">
           <div class="start-item">{{problem.pid}}</div>
           <div class="options-2 problem-title" style="padding-left: 4px;">{{problem.title}}</div>

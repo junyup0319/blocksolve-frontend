@@ -1,0 +1,56 @@
+import $store from '../../../src/store';
+import _ from 'lodash';
+
+import {Problem as ProblemForm, Solution as SolutionForm, Submit as SubmitForm} from '../form';
+
+class VuexApi {
+  public async initVuex() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const problemRaw = await fetch('/data/problem.json');
+        const problems = JSON.parse(await problemRaw.text()).data;
+        $store.commit('setProblems', problems);
+
+        const solutionRaw = await fetch('/data/solution.json');
+        const solutions = JSON.parse(await solutionRaw.text()).data;
+        $store.commit('setSolutions', solutions);
+
+        const sumbmitRaw = await fetch('/data/submit.json');
+        const sumbmits = JSON.parse(await sumbmitRaw.text()).data;
+        $store.commit('setSubmits', sumbmits);
+        console.log('INIT VUEX!!', problems, solutions, sumbmits);
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  public saveSolution(solution: SolutionForm) {
+    const solutions = _.clone(this.solutions);
+    const idx = _.findIndex(solutions, (s) => s.pid === solution.pid);
+    if (idx === -1) {
+      $store.commit('addSolution', solution);
+    } else {
+      solutions[idx] = solution;
+      $store.commit('setSolutions', solutions);
+    }
+  }
+  public saveSubmit(submit: {uid: string, pid: string, xml: string, source: string}, result: boolean): SubmitForm {
+    // result에 따라 맞은 결과를 보여줄 수도, 틀린결과를 보여줄 수도 있다.
+    console.log('submit', _.filter(this.submits, (s) => s.pid === submit.pid && s.result === result)[0]);
+    return _.filter(this.submits, (s) => s.pid === submit.pid && s.result === result)[0];
+  }
+
+  get problems(): ProblemForm[] {
+    return $store.getters.problems;
+  }
+  get solutions(): SolutionForm[] {
+    return $store.getters.solutions;
+  }
+  get submits(): SubmitForm[] {
+    return $store.getters.submits;
+  }
+}
+
+export default new VuexApi();

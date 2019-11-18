@@ -4,9 +4,11 @@
 import { Vue, Component } from 'vue-property-decorator';
 import { Problem } from '@/lib/form';
 import { ProblemApi } from '@/lib/api';
+import api from '@/lib/api/vuexApi';
 
 @Component({})
 export default class ProblemList extends Vue {
+  private api = api;
   private problems: Problem[] = [];
   private clickItem(id: string) {
     this.$router.push({
@@ -15,14 +17,17 @@ export default class ProblemList extends Vue {
   }
   private async mounted() {
     this.$loadingDefault.on();
-    try {
-      this.problems = await ProblemApi.getProblems();
-      console.log('problems', this.problems);
-    } catch (e) {
-      alert('server error');
-      this.$router.go(-1);
-    }
-    this.$loadingDefault.off();
+    setTimeout(() => {
+      this.$loadingDefault.off();
+    }, 600);
+    // try {
+    //   this.problems = await ProblemApi.getProblems();
+    //   console.log('problems', this.problems);
+    // } catch (e) {
+    //   alert('server error');
+    //   this.$router.go(-1);
+    // }
+
 
   }
 }

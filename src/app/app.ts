@@ -5,6 +5,8 @@ import Loading from '@/plugins/loading';
 import Dialog from '@/plugins/dialog';
 import ResultDialog from '@/plugins/resultDialog';
 
+import {VuexApi as api} from '@/lib/api';
+
 Vue.use(Loading);
 Vue.use(Dialog);
 Vue.use(ResultDialog);
@@ -33,12 +35,19 @@ export default class App extends Vue {
   private onChangeRoute() {
     //
   }
-  private mounted() {
+  private async mounted() {
     auth.setOnAuthChanged((u) => {
       this.$store.commit('signIn', u);
       console.warn(this.$store.getters.user);
     });
 
+
+    try {
+      await api.initVuex();
+    } catch (e) {
+      alert('server error!');
+      this.$router.go(-1);
+    }
 
   }
 

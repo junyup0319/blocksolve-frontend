@@ -19,7 +19,8 @@ import ProblemApi from '@/lib/api/problemApi';
 
 import _ from 'lodash';
 import { debounce } from 'typescript-debounce-decorator';
-import router from '@/router';
+
+import api from '@/lib/api/vuexApi';
 
 
 @Component({})
@@ -71,31 +72,38 @@ export default class Ide extends Vue {
   private consoleResults: string[] = [];
 
 
-  private problem: Problem = {
-    pid: '',
-    title: '',
-    category: '',
-    creator: '',
-    numSub: 0,
-    correctRate: 0,
-    content: '',
-    inputDetail: '',
-    outputDetail: '',
-    initXML: '',
-    example: '',
-    createdAt: 0,
-  };
+  // private problem: Problem = {
+  //   pid: '',
+  //   title: '',
+  //   category: '',
+  //   creator: '',
+  //   numSub: 0,
+  //   correctRate: 0,
+  //   content: '',
+  //   inputDetail: '',
+  //   outputDetail: '',
+  //   initXML: '',
+  //   example: '',
+  //   createdAt: 0,
+  // };
 
 
   @debounce(1000, { leading: false })
   private async onCodeChangeServerCall() {
-    try {
-      await ProblemApi.saveSolution('1', this.$route.params.pid,
-        Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)));
-      console.log('success auto save!');
-    } catch (e) {
-      console.error('fail auto save!', e);
-    }
+    api.saveSolution({
+      uid: '1',
+      pid: this.$route.params.pid,
+      savedAt: new Date().getTime(),
+      savedXML: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)),
+    });
+    console.log('success auto save');
+    // try {
+    //   await ProblemApi.saveSolution('1', this.$route.params.pid,
+    //     Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)));
+    //   console.log('success auto save!');
+    // } catch (e) {
+    //   console.error('fail auto save!', e);
+    // }
   }
 
   @Watch('javaScriptCode')
@@ -208,34 +216,50 @@ export default class Ide extends Vue {
   private async submit() {
     console.log(Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)));
     this.$loadingDefault.on('0.1');
-    try {
-      const res = await ProblemApi.submit(this.problem.pid, '1',
-        Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)),
-        this.pythonCode);
-
-      console.log(res);
+    const res = api.saveSubmit({
+      uid: '1',
+      pid: this.$route.params.pid,
+      xml: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)),
+      source: this.pythonCode,
+    }, false);
+    setTimeout(() => {
+      this.$loadingDefault.off();
       // TODO
-      // results를 실제 데이터로 바꾸기
-      //  => res에서 테스트 케이스 별로 데이터가 넘어와야함
-      //  => 데이터에 맞게 dialog 바꾸기
-      // test code
-      const results: Array<{text: string, correct: boolean}> = [];
-      if (res.result) {
-        results.push({text: 'true!!', correct: true});
-      } else {
-        results.push({text: 'false!!', correct: false});
-      }
-      for (let i = 0; i < 20; i++) {
-        results.push({
-          text: 'test' + i, correct: true,
-        });
-      }
-      this.$resultDialog.on(results);
+      // 결과 dialog 띄워서 res: SubmitForm => test case 별로 보여주기!
+      // this.$resultDialog.on(res);
+      this.$resultDialog.on(res);
 
-    } catch (e) {
-      console.error(e);
-    }
-    this.$loadingDefault.off();
+    }, 800);
+
+
+    // try {
+    //   const res = await ProblemApi.submit(this.problem.pid, '1',
+    //     Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)),
+    //     this.pythonCode);
+
+    //   console.log(res);
+    //   // TODO
+    //   // results를 실제 데이터로 바꾸기
+    //   //  => res에서 테스트 케이스 별로 데이터가 넘어와야함
+    //   //  => 데이터에 맞게 dialog 바꾸기
+    //   // test code
+    //   const results: Array<{text: string, correct: boolean}> = [];
+    //   if (res.result) {
+    //     results.push({text: 'true!!', correct: true});
+    //   } else {
+    //     results.push({text: 'false!!', correct: false});
+    //   }
+    //   for (let i = 0; i < 20; i++) {
+    //     results.push({
+    //       text: 'test' + i, correct: true,
+    //     });
+    //   }
+    //   this.$resultDialog.on(results);
+
+    // } catch (e) {
+    //   console.error(e);
+    // }
+
   }
 
   private initCode() {
@@ -256,43 +280,71 @@ export default class Ide extends Vue {
 
   }
 
+  get problem() {
+    return _.filter(api.problems, (p) => p.pid === this.$route.params.pid)[0];
+  }
+
+  get solution() {
+    return _.filter(api.solutions, (s) => s.pid === this.problem.pid)[0];
+  }
+
   private async mounted() {
-    this.$loadingDefault.on();
-    try {
-      this.problem = await ProblemApi.getProblem(this.$route.params.pid);
-      console.log('problem: ', this.problem);
-    } catch (e) {
-      alert('잘못된 접근입니다.');
-      return;
-      // this.$router.go(-1);
-    }
     this.initBlockly();
-
     this.workspace.addChangeListener(this.updateBlockCode);
-
-    try {
-      const solution = await ProblemApi.getSavedSolution('1', this.problem.pid);
-      // 저장된 solution이 있는 경우
-      if (_.isNil(solution)) {
+    this.$loadingDefault.on();
+    setTimeout(async () => {
+      this.$loadingDefault.off();
+      if (_.isNil(this.solution)) {
         console.log('저장된 solution 없음');
       } else {
         try {
           this.$loadingDefault.off();
           await this.$dialog.on('title', '저장된 블록이 있습니다.\n저장된 블록을 가져오시겠습니까?', '가져오기', '취소');
-          console.log('solution', solution);
-          const dom = Blockly.Xml.textToDom(solution.savedXML);
+          console.log('저장된 solution', this.solution);
+          const dom = Blockly.Xml.textToDom(this.solution.savedXML);
           Blockly.Xml.clearWorkspaceAndLoadFromXml(dom, this.workspace);
         } catch (e) {
           this.initCode();
         }
       }
-    } catch (e) {
-      console.error('server error');
-      alert('server error');
-      this.$router.go(-1);
-    }
+    }, 600);
 
-    this.$loadingDefault.off();
+
+
+    // try {
+    //   this.problem = await ProblemApi.getProblem(this.$route.params.pid);
+    //   console.log('problem: ', this.problem);
+    // } catch (e) {
+    //   alert('잘못된 접근입니다.');
+    //   return;
+    //   // this.$router.go(-1);
+    // }
+    // this.initBlockly();
+
+    // this.workspace.addChangeListener(this.updateBlockCode);
+
+    // try {
+    //   const solution = await ProblemApi.getSavedSolution('1', this.problem.pid);
+    //   // 저장된 solution이 있는 경우
+    //   if (_.isNil(solution)) {
+    //     console.log('저장된 solution 없음');
+    //   } else {
+    //     try {
+    //       this.$loadingDefault.off();
+    //       await this.$dialog.on('title', '저장된 블록이 있습니다.\n저장된 블록을 가져오시겠습니까?', '가져오기', '취소');
+    //       console.log('solution', solution);
+    //       const dom = Blockly.Xml.textToDom(solution.savedXML);
+    //       Blockly.Xml.clearWorkspaceAndLoadFromXml(dom, this.workspace);
+    //     } catch (e) {
+    //       this.initCode();
+    //     }
+    //   }
+    // } catch (e) {
+    //   console.error('server error');
+    //   alert('server error');
+    //   this.$router.go(-1);
+    // }
+
 
 
   }

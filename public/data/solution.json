@@ -1,15 +1,15 @@
 {
   "data": [
     {
-      "uid": 1,
-      "pid": 1000,
-      "xml": "<xml></xml>",
+      "uid": "1",
+      "pid": "1000",
+      "savedXML": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"text_print\" id=\"9a#i4bHW5_[@Mc/?jO1|\" x=\"30\" y=\"70\"><value name=\"TEXT\"><block type=\"text\" id=\"*/!3DfS(cNyyv!G}?ivP\"><field name=\"TEXT\">이전에 저장된 코드입니다</field></block></value></block></xml>",
       "solveAt": 1570095736460
     },
     {
-      "uid": 1,
-      "pid": 1001,
-      "xml": "<xml></xml>",
+      "uid": "1",
+      "pid": "1001",
+      "savedXML": "<xml></xml>",
       "solveAt": 1570095736460
     }
   ]

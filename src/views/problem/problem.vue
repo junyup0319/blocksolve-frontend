@@ -13,7 +13,7 @@
         <v-tabs vertical color="rgb(65, 165, 211)">
           <v-tab style="border-bottom: solid 1px rgb(65, 165, 211, 0.7);"><v-icon>description</v-icon></v-tab>
           <v-tab style="border-bottom: solid 1px rgb(65, 165, 211, 0.7);"><v-icon>code</v-icon></v-tab>
-          <v-tab-item class="tab-item">
+          <v-tab-item class="tab-item" v-if="problem">
             <div class="tab-item-title">문제</div>
             <v-card flat class="tab-item-content">
               <v-card-text style="color: white; font-size: 16px;" v-html="problem.content"></v-card-text>

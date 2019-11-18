@@ -1,8 +1,8 @@
 {
   "data": [
     {
-      "uid": 1,
-      "pid": 1000,
+      "uid": "1",
+      "pid": "1000",
       "title": "A+B",
       "category": "카테고리1",
       "content": "<p>두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오</p>",
@@ -10,7 +10,7 @@
       "createdAt": 1570095736460,
       "creator": "작성자1",
       "initXML": "<xml></xml>",
-      "numSub": 12,
+      "sumbitNumber": 12,
       "inputDetail": "<p>첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)</p>",
       "outputDetail": "<p>첫째 줄에 A+B를 출력한다.</p>",
       "example": [
@@ -25,8 +25,8 @@
       ]
     },
     {
-      "uid": 1,
-      "pid": 1001,
+      "uid": "1",
+      "pid": "1001",
       "title": "A+B2",
       "category": "카테고리1",
       "content": "<p>두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오</p>",
@@ -34,7 +34,7 @@
       "createdAt": 1570095736460,
       "creator": "작성자1",
       "initXML": "<xml></xml>",
-      "numSub": 12,
+      "sumbitNumber": 12,
       "inputDetail": "<p>첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)</p>",
       "outputDetail": "<p>첫째 줄에 A+B를 출력한다.</p>",
       "example": [
@@ -49,8 +49,8 @@
       ]
     },
     {
-      "uid": 1,
-      "pid": 1,
+      "uid": "1",
+      "pid": "1",
       "title": "A-B",
       "category": "카테고리2",
       "content": "<p>두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오</p>",
@@ -58,7 +58,7 @@
       "createdAt": 1570095736460,
       "creator": "작성자1",
       "initXML": "<xml></xml>",
-      "numSub": 12,
+      "sumbitNumber": 12,
       "inputDetail": "<p>첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)</p>",
       "outputDetail": "<p>첫째 줄에 A+B를 출력한다.</p>",
       "example": [

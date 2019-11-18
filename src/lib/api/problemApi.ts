@@ -7,46 +7,84 @@ import {Problem as ProblemForm, Solution as SolutionForm} from '../form';
 
 export class ProblemApi {
   public async getProblems(): Promise<ProblemForm[]> {
-    const ele = await fetch('/data/problem.json');
-    const problems = JSON.parse(await ele.text()).data;
-    return problems;
+    // const ele = await fetch('/data/problem.json');
+    // const problems = JSON.parse(await ele.text()).data;
+    // return problems;
 
-    // const res = await axios.get(`${host}/problems`);
-    // // console.log(res);
-    // return res.data.data;
+    const res = await axios.get(`${host}/problems`);
+    // console.log(res);
+    return res.data.data;
   }
   public async getProblem(pid: string): Promise<ProblemForm> {
-    const ele = await fetch('/data/problem.json');
-    const problems = JSON.parse(await ele.text()).data;
-    return _.filter(problems, (d) => d.pid === Number(pid))[0];
+    // const ele = await fetch('/data/problem.json');
+    // const problems = JSON.parse(await ele.text()).data;
+    // return _.filter(problems, (d) => d.pid === Number(pid))[0];
 
-    // const res = await axios.get(`${host}/problems/${pid}`);
-    // return res.data.data;
+    const res = await axios.get(`${host}/problems/${pid}`);
+    return res.data.data;
   }
   public async getProblemsByCategory(category: string): Promise<ProblemForm[]> {
     const res = await axios.get(`${host}/problems?category=${category}`);
     return res.data.data;
   }
   public async getSavedSolution(uid: string, pid: string): Promise<SolutionForm | null> {
-    const ele = await fetch('/data/solution.json');
-    const solutions = JSON.parse(await ele.text()).data;
-    const data = _.filter(solutions, (sol) => sol.uid === Number(uid) && sol.pid === Number(pid))[0];
-    if (_.isNil(data)) {
-      return null;
-    } else {
-      return data;
-    }
-    // return new Promise(async (resolve, reject) => {
-    //   const res = await axios.get(`${host}/save?uid=${1}&pid=${Number(pid)}`);
-    //   if (res.data.result === 200) {
-    //     return resolve(res.data.data);
-    //   } else {
-    //     reject(new Error());
-    //   }
-    // });
+    // const ele = await fetch('/data/solution.json');
+    // const solutions = JSON.parse(await ele.text()).data;
+    // const data = _.filter(solutions, (sol) => sol.uid === Number(uid) && sol.pid === Number(pid))[0];
+    // if (_.isNil(data)) {
+    //   return null;
+    // } else {
+    //   return data;
+    // }
+    return new Promise(async (resolve, reject) => {
+      const res = await axios.get(`${host}/save?uid=${1}&pid=${Number(pid)}`);
+      if (res.data.result === 200) {
+        return resolve(res.data.data);
+      } else {
+        reject(new Error());
+      }
+    });
   }
   public async saveSolution(uid: string, pid: string, savedXML: string): Promise<{msg: string, result: boolean}> {
-    // solution에 있으면 update 없으면 create
+    // const ele = await fetch('/data/solution.json');
+    // const solutions: Array<{uid: number, pid: number, xml: string, solveAt: number}>
+    //   = JSON.parse(await ele.text()).data;
+    // const index = _.findIndex(solutions, (sol) => sol.uid === Number(uid) && sol.pid === Number(pid));
+    // if (index === -1) {
+    //   // createfu
+    //   solutions.push({
+    //     uid: Number(uid),
+    //     pid: Number(pid),
+    //     xml: savedXML,
+    //     solveAt: new Date().getTime(),
+    //   });
+    // } else {
+    //   // update
+    //   solutions[index] = {
+    //     uid: Number(uid),
+    //     pid: Number(pid),
+    //     xml: savedXML,
+    //     solveAt: new Date().getTime(),
+    //   };
+    // }
+    // // TODO PUT 안됨.. 파일 write를 어떻게 해야하나?
+    // try {
+    //   await fetch('/data/solution.json', {
+    //     method: 'PUT',
+    //     body: JSON.stringify({data: solutions}),
+    //   });
+    //   return {
+    //     msg: `저장 성공(create) => uid: ${uid}, pid: ${pid}`,
+    //     result: true,
+    //   };
+    // } catch (e) {
+    //   // 저장 실패
+    //   return {
+    //     msg: `저장 실패 => uid: ${uid}, pid: ${pid}`,
+    //     result: false,
+    //   };
+    // }
+
     const res = await axios.post(`${host}/save`, {
       pid: Number(pid),
       uid: 1,

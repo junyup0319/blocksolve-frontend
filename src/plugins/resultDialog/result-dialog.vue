@@ -14,7 +14,20 @@
         <div class="result-title" v-if="ui.isCorrect" style="color: #00b248;">" 맞았습니다 "</div>
         <div class="result-title" v-else style="color: #ff3232;">" 틀렸습니다 "</div>
         <div class="results">
-          <div class="result" v-for="(res, i) in results" :key="'key' + i" :correct="res.correct">{{res.text}}</div>
+          <div class="guide-area">
+            <div class="guide-2">&nbsp;&nbsp;&nbsp;번호</div>
+            <div class="guide-2">입력값</div>
+            <div class="guide-2">예상출력값</div>
+            <div class="guide-2">실제출력값</div>
+            <div class="guide-1">결과</div>
+          </div>
+          <div class="testcase-area" v-for="(res, i) in testCaseResult" :key="'test-case-' + i">
+            <div class="item item-2">test {{i+1}}</div>
+            <div class="item item-2">{{res.input}}</div>
+            <div class="item item-2">{{res.expectOutput}}</div>
+            <div class="item item-2">{{res.output}}</div>
+            <div class="item item-1 testcase-result" :correct="res.result">5</div>
+          </div>
         </div>
       </div>
       <div class="button-area">
@@ -79,18 +92,46 @@
         overflow-y: auto;
         border: solid 1px #ccc;
         padding: 8px 16px;
-        .result {
+        .guide-area {
+          width: 100%;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          color: #777;
           font-weight: 600;
-          color: #ff3232;
-          text-decoration: line-through;
+          margin-bottom: 8px;
+          .guide-1 {
+            flex: 1;
+          }
+          .guide-2 {
+            flex: 2;
+          }
+        }
+        .testcase-area {
+          display: flex;
+          align-items: center;
+          color: #777;
           margin-bottom: 4px;
-          &[correct] {
-            color: rgb(65, 165, 211);
-            text-decoration: none;
+          .item {
+            padding-left: 4px;  
+          }
+          .item-1 {
+            flex: 1;
+          }
+          .item-2 {
+            flex: 2;
+          }
+          .testcase-result {
+            font-weight: 600;
+            color: #ff3232;
+            text-decoration: line-through;
+            &[correct] {
+              color: rgb(65, 165, 211);
+              text-decoration: none;
+            }
           }
         }
       }
-      
     }
     .button-area {
       border-top: solid 1px #ccc;

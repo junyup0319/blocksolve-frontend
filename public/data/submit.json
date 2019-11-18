@@ -1,27 +1,27 @@
 {
   "data": [
     {
-      "uid": 1,
-      "pid": 1000,
+      "uid": "1",
+      "pid": "1000",
       "xml": "<xml></xml>",
       "source": "python",
       "submitAt": 1570095736460,
       "result": true,
       "testCase": [
-        {"input": "1 2", "expectOutput": "3", "output": "3", "result": true},
-        {"input": "3 4", "expectOutput": "7", "output": "7", "result": true}
+        {"input": "1, 2", "expectOutput": "3", "output": "3", "result": true},
+        {"input": "3, 4", "expectOutput": "7", "output": "7", "result": true}
       ]
     },
     {
-      "uid": 1,
-      "pid": 1000,
+      "uid": "1",
+      "pid": "1000",
       "xml": "<xml></xml>",
       "source": "python",
       "submitAt": 1570095736460,
       "result": false,
       "testCase": [
-        {"input": "1 2", "expectOutput": "3", "output": "3", "result": true},
-        {"input": "3 4", "expectOutput": "7", "output": "4", "result": false}
+        {"input": "1, 2", "expectOutput": "3", "output": "3", "result": true},
+        {"input": "3, 4", "expectOutput": "7", "output": "4", "result": false}
       ]
     }
   ]

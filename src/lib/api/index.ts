@@ -1,3 +1,4 @@
 import ProblemApi from './problemApi';
+import VuexApi from './vuexApi';
 
-export {ProblemApi};
+export {ProblemApi, VuexApi};
