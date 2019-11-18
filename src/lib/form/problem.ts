@@ -18,5 +18,4 @@ export interface Solution {
   pid: string;
   savedAt: number;
   savedXML: string;
-  status: string;
 }

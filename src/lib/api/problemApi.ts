@@ -27,18 +27,26 @@ export class ProblemApi {
     const res = await axios.get(`${host}/problems?category=${category}`);
     return res.data.data;
   }
-  public async getSavedSolution(uid: string, pid: string): Promise<SolutionForm> {
-    return new Promise(async (resolve, reject) => {
-      const res = await axios.get(`${host}/save?uid=${1}&pid=${Number(pid)}`);
-      if (res.data.result === 200) {
-        return resolve(res.data.data);
-      } else {
-        reject(new Error());
-      }
-    });
+  public async getSavedSolution(uid: string, pid: string): Promise<SolutionForm | null> {
+    const ele = await fetch('/data/solution.json');
+    const solutions = JSON.parse(await ele.text()).data;
+    const data = _.filter(solutions, (sol) => sol.uid === Number(uid) && sol.pid === Number(pid))[0];
+    if (_.isNil(data)) {
+      return null;
+    } else {
+      return data;
+    }
+    // return new Promise(async (resolve, reject) => {
+    //   const res = await axios.get(`${host}/save?uid=${1}&pid=${Number(pid)}`);
+    //   if (res.data.result === 200) {
+    //     return resolve(res.data.data);
+    //   } else {
+    //     reject(new Error());
+    //   }
+    // });
   }
   public async saveSolution(uid: string, pid: string, savedXML: string): Promise<{msg: string, result: boolean}> {
-    // lastSolution에 있으면 update 없으면 create
+    // solution에 있으면 update 없으면 create
     const res = await axios.post(`${host}/save`, {
       pid: Number(pid),
       uid: 1,
@@ -58,7 +66,7 @@ export class ProblemApi {
     // 없으면 crate, 있으면 update 한 뒤에
     // 결과를 임의로 만들어서 저장해야함
 
-    // 그리고 제출하면 lastSolution도 update 해줘야함
+    // 그리고 제출하면 solution도 update 해줘야함
       // saveSolution() 으로 처리
 
     const res = await axios.post(`${host}/submit`, {
