@@ -4,6 +4,8 @@ import _ from 'lodash';
 import {Problem as ProblemForm, Solution as SolutionForm, Submit as SubmitForm} from '../form';
 
 class VuexApi {
+  // TODO
+  // 마이페이지에서 사용하는 status 만들기
   public async initVuex() {
     return new Promise(async (resolve, reject) => {
       try {

@@ -51,9 +51,13 @@
           </v-btn>
           <v-btn dark color="rgb(65, 165, 211)"
             style="position: absolute; right: 100px; bottom: 88px; z-index: 999; width: 92px;"
-            @click="submit">
+            @click="submit(true)">
             제출하기
           </v-btn>
+          <div
+            style="position: absolute; right: 100px; bottom: 88px; z-index: 999; width: 46px; height: 36px;"
+            @click="submit(false)">
+          </div>
           <v-btn dark color="rgb(65, 165, 211)"
             style="position: absolute; right: 100px; bottom: 40px; z-index: 999; width: 92px;"
             @click="initCode">

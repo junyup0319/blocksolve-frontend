@@ -213,20 +213,19 @@ export default class Ide extends Vue {
     this.interpreter = new Interpreter(this.javaScriptCode, this.initInterpreterApi);
     this.interpreter.run();
   }
-  private async submit() {
+  private async submit(testResult: boolean) {
     console.log(Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)));
     this.$loadingDefault.on('0.1');
+    // TODO
+    // saveSubmit => true, false 분기
     const res = api.saveSubmit({
       uid: '1',
       pid: this.$route.params.pid,
       xml: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)),
       source: this.pythonCode,
-    }, false);
+    }, testResult);
     setTimeout(() => {
       this.$loadingDefault.off();
-      // TODO
-      // 결과 dialog 띄워서 res: SubmitForm => test case 별로 보여주기!
-      // this.$resultDialog.on(res);
       this.$resultDialog.on(res);
 
     }, 800);
