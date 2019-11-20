@@ -291,6 +291,10 @@ export default class Ide extends Vue {
     this.initBlockly();
     this.workspace.addChangeListener(this.updateBlockCode);
     this.$loadingDefault.on();
+    if (!await api.isProblemExist(this.$route.params.pid)) {
+      alert('잘못된 접근입니다.');
+      this.$router.go(-1);
+    }
     setTimeout(async () => {
       this.$loadingDefault.off();
       if (_.isNil(this.solution)) {

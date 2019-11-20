@@ -43,6 +43,11 @@ class VuexApi {
     console.log('submit', _.filter(this.submits, (s) => s.pid === submit.pid && s.result === result)[0]);
     return _.filter(this.submits, (s) => s.pid === submit.pid && s.result === result)[0];
   }
+  public async isProblemExist(pid: string): Promise<boolean> {
+    const problemRaw = await fetch('/data/problem.json');
+    const problems = JSON.parse(await problemRaw.text()).data;
+    return _.some(problems, (p) => p.pid === pid);
+  }
 
   get problems(): ProblemForm[] {
     return $store.getters.problems;

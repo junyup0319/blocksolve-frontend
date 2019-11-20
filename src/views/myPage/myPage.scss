@@ -127,6 +127,7 @@
       width: 80px;
       min-width: 80px;
       max-width: 80px;
+      margin-right: 40px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -147,6 +148,12 @@
         display: flex;
         text-align: left;
         align-items: center;
+        &:hover {
+          cursor: pointer;
+          .detail-content {
+            font-weight: 500;
+          }
+        }
         .detail-content {
           flex: 1;
         }

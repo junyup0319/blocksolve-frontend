@@ -39,11 +39,10 @@
             <div class="options-1">만든이</div>
             <div class="options-1">제출 시간</div>
             <div class="end-item">제출 결과</div>
-            <div style="width: 48px;"></div>
           </div>
           <div class="table-item items" v-for="(item, i) in submits" :key="'submit-' + i"
-            :open="item.open" :last="i===status.length-1">
-            <div class="content" style="display: flex;"  @click.stop="itemClick(i)">
+            :open="item.open" :last="i===submits.length-1">
+            <div class="content" style="display: flex;"  @click.stop="openResultDialog(item.submit)">
               <div class="start-item">{{item.problem.pid}}</div>
               <div class="options-2">{{item.problem.title}}</div>
               <div class="options-1">{{item.problem.category}}</div>
@@ -51,15 +50,15 @@
               <div class="options-1">{{item.submit.submitAt}}</div>
               <div v-if="item.submit.result" class="end-item testResult" :isCorrect="item.submit.result">성공</div>
               <div v-else class="end-item testResult" :isCorrect="item.submit.result">실패</div>
-              <v-icon class="icon" style="margin: 0 12px;">arrow_drop_down</v-icon>
+              <!-- <v-icon class="icon" style="margin: 0 12px;">arrow_drop_down</v-icon> -->
             </div>
-            <div class="details" v-for="(test, i) in item.submit.testCase" :key="'testcase-' + i" style="border-top: solid 1px #ccc; padding-left: 20px;">
-              <div class="detail-item">
+            <!-- <div class="details" v-for="(test, i) in item.submit.testCase" :key="'testcase-' + i" style="border-top: solid 1px #ccc; padding-left: 20px;">
+              <div class="detail-item" @click="openResultDialog(item.submit)">
                 <div class="detail-content">test case {{i+1}}</div>
                 <div class="detail-content-end" v-if="test.result">test case {{i+1}}이 맞았습니다!</div>
                 <div class="detail-content-end" v-else>test case {{i+1}}이 틀렸습니다!</div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
