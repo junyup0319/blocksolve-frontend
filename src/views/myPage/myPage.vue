@@ -41,23 +41,23 @@
             <div class="end-item">제출 결과</div>
             <div style="width: 48px;"></div>
           </div>
-          <div class="table-item items" v-for="(item, i) in status" :key="i"
+          <div class="table-item items" v-for="(item, i) in submits" :key="'submit-' + i"
             :open="item.open" :last="i===status.length-1">
             <div class="content" style="display: flex;"  @click.stop="itemClick(i)">
-              <div class="start-item">{{item.pid}}</div>
-              <div class="options-2">{{item.title}}</div>
-              <div class="options-1">{{item.category}}</div>
-              <div class="options-1">{{item.creator}}</div>
-              <div class="options-1">api에 시간 데이터 없음</div>
-              <div v-if="testResult[i]" class="end-item testResult" :isCorrect="testResult[i]">성공</div>
-              <div v-else class="end-item testResult" :isCorrect="testResult[i]">실패</div>
+              <div class="start-item">{{item.problem.pid}}</div>
+              <div class="options-2">{{item.problem.title}}</div>
+              <div class="options-1">{{item.problem.category}}</div>
+              <div class="options-1">{{item.problem.creator}}</div>
+              <div class="options-1">{{item.submit.submitAt}}</div>
+              <div v-if="item.submit.result" class="end-item testResult" :isCorrect="item.submit.result">성공</div>
+              <div v-else class="end-item testResult" :isCorrect="item.submit.result">실패</div>
               <v-icon class="icon" style="margin: 0 12px;">arrow_drop_down</v-icon>
             </div>
-            <div class="details" v-for="(test, i) in item.testresult" :key="'testcase'+i" style="border-top: solid 1px #ccc; padding-left: 20px;">
+            <div class="details" v-for="(test, i) in item.submit.testCase" :key="'testcase-' + i" style="border-top: solid 1px #ccc; padding-left: 20px;">
               <div class="detail-item">
                 <div class="detail-content">test case {{i+1}}</div>
-                <div class="detail-content">{{test.result}}</div>
-                <div class="detail-content-end">test case1이 맞았습니다!</div>
+                <div class="detail-content-end" v-if="test.result">test case {{i+1}}이 맞았습니다!</div>
+                <div class="detail-content-end" v-else>test case {{i+1}}이 틀렸습니다!</div>
               </div>
             </div>
           </div>

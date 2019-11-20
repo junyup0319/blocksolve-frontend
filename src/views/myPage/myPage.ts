@@ -5,10 +5,12 @@ import { Vue, Component } from 'vue-property-decorator';
 import _ from 'lodash';
 import {auth} from '@/lib/firebase';
 import {ProblemApi} from '@/lib/api';
-import {Problem, Solution} from '@/lib/form';
+import {Problem as ProblemForm, Solution, Submit as SubmitForm} from '@/lib/form';
+import api from '@/lib/api/vuexApi';
 
 @Component({})
 export default class MyPage extends Vue {
+  private userSubmits: Array<{submit: SubmitForm, problem: ProblemForm, open: boolean}> = [];
   private userStatus: Array<{
     category: string,
     creator: string,
@@ -21,8 +23,11 @@ export default class MyPage extends Vue {
     testresult: Array<{result: boolean, tid: number}>,
     open: false,
   }> = [];
-  private problems: Problem[] = [];
+  private problems: ProblemForm[] = [];
 
+  get submits() {
+    return this.userSubmits;
+  }
   get status() {
     return this.userStatus;
   }
@@ -32,6 +37,7 @@ export default class MyPage extends Vue {
   get problemCount() {
     return this.problems.length;
   }
+
   get testResult() {
     // TODO result 가 boolean으로 바뀌면 변경 필요!
     // @ts-ignore
@@ -39,7 +45,7 @@ export default class MyPage extends Vue {
   }
 
   private itemClick(index: number) {
-    Vue.set(this.userStatus[index], 'open', !this.userStatus[index].open);
+    Vue.set(this.userSubmits[index], 'open', !this.userSubmits[index].open);
   }
   private login() {
     auth.signIn();
@@ -58,7 +64,19 @@ export default class MyPage extends Vue {
       alert('server error');
       this.$router.go(-1);
     }
-    setTimeout(this.$loadingDefault.off, 500);
+    setTimeout(() => {
+      this.$loadingDefault.off();
+      const submits = api.submits;
+      const problems = api.problems;
+      this.userSubmits = _.map(submits, (s) => {
+        return {
+          submit: s,
+          problem: _.filter(problems, (p) => p.pid === s.pid)[0],
+          open: false,
+        };
+      });
+      console.log(this.userSubmits);
+    }, 600);
 
   }
 }
