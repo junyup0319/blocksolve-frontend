@@ -40,7 +40,10 @@ class VuexApi {
   }
   public saveSubmit(submit: {uid: string, pid: string, xml: string, source: string}, result: boolean): SubmitForm {
     // result에 따라 맞은 결과를 보여줄 수도, 틀린결과를 보여줄 수도 있다.
-    console.log('submit', _.filter(this.submits, (s) => s.pid === submit.pid && s.result === result)[0]);
+    // store에 저장하는 코드를 써야하나?
+    // 써야하면 result에 따라서 testCase를 직접 넣어줘야한다!
+    // $store.commit('addSubmit', submit);
+    console.log('submit!!', _.filter(this.submits, (s) => s.pid === submit.pid && s.result === result)[0]);
     return _.filter(this.submits, (s) => s.pid === submit.pid && s.result === result)[0];
   }
   public async isProblemExist(pid: string): Promise<boolean> {

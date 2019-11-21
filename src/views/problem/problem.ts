@@ -224,6 +224,7 @@ export default class Ide extends Vue {
       xml: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(this.workspace)),
       source: this.pythonCode,
     }, testResult);
+    console.log(api.submits);
     setTimeout(() => {
       this.$loadingDefault.off();
       this.$resultDialog.on(res);
