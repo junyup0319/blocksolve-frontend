@@ -36,7 +36,7 @@
           <v-tab-item class="tab-item">
             <div class="tab-item-title">code</div>
             <v-card flat class="tab-item-content">
-              <v-card-text style="color: white; font-size: 16px; white-space: pre;">{{javaScriptCode}}</v-card-text>
+              <v-card-text style="color: white; font-size: 16px; width: 120px; white-space: pre;">{{javaScriptCode}}</v-card-text>
             </v-card>
           </v-tab-item>
         </v-tabs>
