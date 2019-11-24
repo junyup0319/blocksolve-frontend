@@ -339,6 +339,7 @@ export default class Ide extends Vue {
       this.$loadingDefault.off();
       if (_.isNil(this.solution)) {
         console.log('저장된 solution 없음');
+        this.initCode();
       } else {
         try {
           this.$loadingDefault.off();

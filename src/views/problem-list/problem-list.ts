@@ -15,7 +15,14 @@ export default class ProblemList extends Vue {
       path: `/problems/${id}`,
     });
   }
+  private getSubmitCount(pid: string): number {
+    return api.submits.filter((s) => pid === s.pid).length;
+  }
+  private getResult(pid: string): boolean {
+    return api.submits.filter((s) => pid === s.pid).some((s) => s.result === true);
+  }
   private async mounted() {
+    console.log(new Date().getTime());
     this.$loadingDefault.on();
     setTimeout(() => {
       this.$loadingDefault.off();

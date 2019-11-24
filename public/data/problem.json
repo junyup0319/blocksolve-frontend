@@ -55,7 +55,7 @@
       "category": "카테고리2",
       "content": "<p>두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오</p>",
       "correctRate": 0.45,
-      "createdAt": 1570095736460,
+      "createdAt": 1574594835411,
       "creator": "작성자1",
       "initXML": "<xml></xml>",
       "sumbitNumber": 12,
@@ -69,6 +69,34 @@
         {
           "input": "a=3\nb=5",
           "output": "8"
+        }
+      ]
+    },
+    {
+      "uid": "1",
+      "pid": "2",
+      "title": "피보나치 수",
+      "category": "카테고리2",
+      "content": "<p>피보나치 수는 0과 1로 시작한다. 0번째 피보나치 수는 0이고, 1번째 피보나치 수는 1이다. 그 다음 2번째 부터는 바로 앞 두 피보나치 수의 합이 된다.</p><p>이를 식으로 써보면 Fn = Fn-1 + Fn-2 (n>=2)가 된다.</p><p>n=17일때 까지 피보나치 수를 써보면 다음과 같다.</p><p>0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597</p><p>n이 주어졌을 때, n번째 피보나치 수를 구하는 프로그램을 작성하시오.</p>",
+      "correctRate": 0.45,
+      "createdAt": 1574594835411,
+      "creator": "작성자1",
+      "initXML": "<xml xmlns='https://developers.google.com/blockly/xml'><variables><variable id='2Sz|W~:Tv2/a.%ie%qw5'>n</variable></variables><block type='variables_set' id='ObOkgmg(g3[u26g_5*6D' x='110' y='70'><field name='VAR' id='2Sz|W~:Tv2/a.%ie%qw5'>n</field><value name='VALUE'><block type='math_number' id='L1;TdEzW2IY(%7%+{K/Q'><field name='NUM'>17</field></block></value></block></xml>",
+      "sumbitNumber": 12,
+      "inputDetail": "<p>첫째 줄에 n이 주어진다. n은 45보다 작거나 같은 자연수이다.</p>",
+      "outputDetail": "<p>첫째 줄에 n번째 피보나치 수를 출력한다.</p>",
+      "example": [
+        {
+          "input": "n = 1",
+          "output": "1"
+        },
+        {
+          "input": "n = 5",
+          "output": "3"
+        },
+        {
+          "input": "n = 17",
+          "output": "1597"
         }
       ]
     }

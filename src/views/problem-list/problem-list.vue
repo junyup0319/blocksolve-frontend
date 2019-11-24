@@ -20,9 +20,9 @@
           <div class="options-2">제목</div>
           <div class="options-1">카테고리</div>
           <div class="options-1">만든이</div>
-          <div class="options-1">제출</div>
-          <div class="options-1">정답 비율</div>
-          <div class="end-item">설명</div>
+          <div class="options-1">생성 시간</div>
+          <div class="options-1">제출 횟수</div>
+          <div class="end-item">풀이 결과</div>
         </div>
         <div class="table-item items"
             v-for="(problem, i) in api.problems" :key="'problem' + i"
@@ -31,9 +31,11 @@
           <div class="options-2 problem-title" style="padding-left: 4px;">{{problem.title}}</div>
           <div class="options-1" style="padding-left: 4px;">{{problem.category}}</div>
           <div class="options-1" style="padding-left: 4px;">{{problem.creator}}</div>
-          <div class="options-1" style="padding-left: 4px;">{{problem.numSub}}</div>
-          <div class="options-1" style="padding-left: 4px;">{{problem.correctRate * 100}}%</div>
-          <div class="end-item"  style="padding-left: 4px;">{{problem.contents}}</div>
+          <div class="options-1" style="padding-left: 4px;">{{new Date(problem.createdAt).getFullYear() + '/' + (new Date(problem.createdAt).getMonth() + 1) + '/' + new Date(problem.createdAt).getDate() }}</div>
+          <div class="options-1" style="padding-left: 4px;">{{getSubmitCount(problem.pid)}}</div>
+          <div v-if="getSubmitCount(problem.pid) === 0" class="end-item"  style="padding-left: 4px;">-</div>
+          <div v-else-if="getResult(problem.pid)" class="end-item"  style="padding-left: 4px; color: rgb(65, 165, 211);">맞았습니다</div>
+          <div v-else class="end-item"  style="padding-left: 4px; color: #ff3232;">틀렸습니다</div>
         </div>
       </div>
     </div>
