@@ -3,6 +3,7 @@
     {
       "uid": "1",
       "pid": "1000",
+      "sid": "1",
       "xml": "<xml></xml>",
       "source": "python",
       "submitAt": 1570095736460,
@@ -15,6 +16,7 @@
     {
       "uid": "1",
       "pid": "1000",
+      "sid": "2",
       "xml": "<xml></xml>",
       "source": "python",
       "submitAt": 1570095736460,

@@ -26,7 +26,8 @@
             <div class="item item-2">{{res.input}}</div>
             <div class="item item-2">{{res.expectOutput}}</div>
             <div class="item item-2">{{res.output}}</div>
-            <div class="item item-1 testcase-result" :correct="res.result">5</div>
+            <div v-if="res.result" class="item item-1 testcase-result" :correct="res.result">성공</div>
+            <div v-else class="item item-1 testcase-result" :correct="res.result">실패</div>
           </div>
         </div>
       </div>
